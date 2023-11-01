@@ -2,6 +2,6 @@
 
 Simple examples demonstrating how to use open-ai's API's from our own endpoints.
 
-This is supplemented with a [video](https://www.youtube.com/watch?v=EYk5SeBQmQE) explaining all the steps not seen in the code
+This is supplemented with a [video](https://youtu.be/vMIQcuFShDE?t=503 ) explaining all the steps not seen in the code
 
 
