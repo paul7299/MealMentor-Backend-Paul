@@ -20,12 +20,16 @@ import java.util.Map;
 
 /*
 Shows an alternative way to create the request body, using a Map<String,Object> instead of a DTO
+Observe the other version provides better error handling. Add this if you want to experiment with this strategy.
  */
 @Service
 public class OpenAiServiceV1 {
 
   @Value("${app.api-key}")
   private String API_KEY;
+
+  //See here for a decent explanation of the parameters send to the API via the requestBody
+  //https://platform.openai.com/docs/api-reference/completions/create
 
   public final static String URL = "https://api.openai.com/v1/chat/completions";
   public final static String MODEL = "gpt-3.5-turbo";
