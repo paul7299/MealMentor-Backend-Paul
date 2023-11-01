@@ -46,7 +46,15 @@ public class OpenAiService {
   public final static double PRESENCE_PENALTY = 0.0;
   public final static double TOP_P = 1.0;
 
-  WebClient client = WebClient.create();
+  private WebClient client;
+
+  public OpenAiService() {
+    this.client = WebClient.create();
+  }
+  //Use this constructor for testing, to inject a mock client
+  public OpenAiService(WebClient client) {
+    this.client = client;
+  }
 
   public MyResponse makeRequest(String userPrompt, String _systemMessage) {
 
@@ -59,7 +67,6 @@ public class OpenAiService {
     requestDto.setPresence_penalty(PRESENCE_PENALTY);
     requestDto.getMessages().add(new ChatCompletionRequest.Message("system", _systemMessage));
     requestDto.getMessages().add(new ChatCompletionRequest.Message("user", userPrompt));
-
 
     ObjectMapper mapper = new ObjectMapper();
     String json = "";
