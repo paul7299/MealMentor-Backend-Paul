@@ -47,7 +47,7 @@ public class JokeControllerLimited {
     if (!bucket.tryConsume(1)) {
       throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Too many requests, try again later");
     }
-    return service.makeRequest(about, JokeController.SYSTEM_MESSAGE);
+    return service.makeRequest(about, MealMentorController.SYSTEM_MESSAGE);
   }
 }
 
