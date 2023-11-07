@@ -26,34 +26,28 @@
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#infoModal">
       Important read!
     </button>
-    <p>The backend for this projects demonstrates 3 ways to use Open AI's Chat Completion API</p>
+    <p>The backend for this project demonstrates 3 ways to use OpenAI's Chat Completion API</p>
     <ol>
       <li>
         <p>The simplest possible example, requesting the API for a joke, given a topic</p>
         <div class="input-group">
           <input type="text" id="about" class="result" placeholder="Enter topic for a joke">
+          <select id="mealType">
+            <option value="Single Recipe">Single Recipe</option>
+            <option value="Multiple Recipes">Multiple Recipes</option>
+          </select>
           <button class="btn btn-dark" id="btn-get-joke">Please provide a Joke</button>
           <div id="spinner1" class="spinner-border text-success" role="status"
-            style="margin-left:1em;border-radius: 50%;display:none;">
+               style="margin-left:1em;border-radius: 50%;display:none;">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
         <p id="result" style="font-size: large;font-style: italic;color:darkblue;"></p>
       </li>
-      <li>
-        <p>Same example as above, but with IP-rate limiting</p>
-        <div class="input-group">
-          <input type="text" id="about2" placeholder="Enter topic for a joke">
-          <button class="btn btn-dark" id="btn-get-joke2">Please provide a Joke</button>
-          <div id="spinner2" class="spinner-border text-success" role="status"
-            style="margin-left:1em;border-radius: 50%;display:none;">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-        <p id="result2" class="result"></p>
-      </li>
-      <li>
-        <div>
+      <!-- Other list items -->
+    </ol>
+
+    <div>
           Demonstrates how to feed own info into the API-request 
           <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#owninfoModal">
             How to test this example!

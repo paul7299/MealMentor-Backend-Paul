@@ -40,7 +40,7 @@ public class JokeControllerLimited {
     return buckets.computeIfAbsent(key, k -> createNewBucket());
   }
 
-  @GetMapping("/limited")
+ /* @GetMapping("/limited")
   public MyResponse getJokeLimited(@RequestParam String about, HttpServletRequest request) {
     String ip = request.getRemoteAddr();
     Bucket bucket = getBucket(ip);
@@ -48,6 +48,6 @@ public class JokeControllerLimited {
       throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Too many requests, try again later");
     }
     return service.makeRequest(about, MealMentorController.SYSTEM_MESSAGE);
-  }
+  } */
 }
 

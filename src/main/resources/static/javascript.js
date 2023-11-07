@@ -1,27 +1,34 @@
 const SERVER_URL = 'http://localhost:8080/api/';
 
-document.getElementById('btn-get-joke').addEventListener('click', getJoke);
-document.getElementById('btn-get-joke2').addEventListener('click', getJokeWithRateLimit);
-document.getElementById('btn-get-answer').addEventListener('click', getInfo);
+document.getElementById('btn-get-joke').addEventListener('click', getMealPlan);
+/*document.getElementById('btn-get-joke2').addEventListener('click', getJokeWithRateLimit);
+document.getElementById('btn-get-answer').addEventListener('click', getInfo);*/
 
-async function getJoke() {
-  const URL = `${SERVER_URL}joke?about= + ${document.getElementById('about').value}`
+async function getMealPlan() {
+  const aboutValue = document.getElementById('about').value;
+  const mealTypeValue = document.getElementById('mealType').value;// Get the selected value from the dropdown
+  const inputValues =  mealTypeValue + " " + aboutValue;
+  console.log("meatype: " + mealTypeValue)
+  console.log(inputValues)
+  const URL1 = `${SERVER_URL}joke?mealType=${mealTypeValue}&about=${aboutValue}`;// Include the dropdown value in the "about" parameter
+  const URL = `${SERVER_URL}joke?about=${inputValues}`;
   const spinner = document.getElementById('spinner1');
   const result = document.getElementById('result');
   result.style.color = "black";
+
   try {
     spinner.style.display = "block";
-    const response = await fetch(URL).then(handleHttpErrors)
+    const response = await fetch(URL).then(handleHttpErrors);
     document.getElementById('result').innerText = response.answer;
-    //document.getElementById('about').value = ''
+    //document.getElementById('about').value = '';
   } catch (e) {
     result.style.color = "red";
     result.innerText = e.message;
-  }
-  finally {
+  } finally {
     spinner.style.display = "none";
   }
 }
+
 
 async function getJokeWithRateLimit() {
   const URL = `${SERVER_URL}joke2/limited?about= + ${document.getElementById('about2').value}`
