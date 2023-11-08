@@ -1,5 +1,6 @@
 package dat3.openai_demo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 @Builder
 public class UserPromptResponse {
 
+
+    // @JsonProperty("sexValue")
     int userAge;
     int userWeight;
     String sex;

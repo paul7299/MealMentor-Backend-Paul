@@ -24,11 +24,6 @@ public class MealMentorController {
     this.service = service;
   }
 
- /* @GetMapping
-  public MyResponse getJoke(@RequestParam String about) {
-
-    return service.makeRequest(about,SYSTEM_MESSAGE);
-  } */
 
 
   @GetMapping()
