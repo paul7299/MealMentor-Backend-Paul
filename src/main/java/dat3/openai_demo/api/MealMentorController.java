@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/joke")
+@RequestMapping("/api/mealPlanGenerator")
 @CrossOrigin(origins = "*")
 public class MealMentorController {
 
