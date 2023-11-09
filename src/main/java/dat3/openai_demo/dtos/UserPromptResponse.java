@@ -19,13 +19,13 @@ public class UserPromptResponse {
     int userWeight;
     @JsonProperty("sex")
     String sex;
-    @JsonProperty("activity-level")
+    @JsonProperty("activityLevel")
     String workoutsPerWeek;
-    @JsonProperty("mealChecklistDiv")
+    @JsonProperty("mealChecklist")
     ArrayList<String> mealChecklist;
     @JsonProperty("goals")
     String goals;
-    @JsonProperty("preference-input")
+    @JsonProperty("preferences")
     ArrayList<String> preferences;
 
 
