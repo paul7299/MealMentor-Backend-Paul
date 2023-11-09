@@ -27,6 +27,8 @@ public class UserPromptResponse {
     String goals;
     @JsonProperty("preferences")
     ArrayList<String> preferences;
+    @JsonProperty("amountOfDays")
+    String amountOfDays;
 
 
 }
