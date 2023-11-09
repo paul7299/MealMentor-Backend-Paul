@@ -26,13 +26,15 @@ public class MealMentorController {
 
 
 
-  @GetMapping()
+  @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
 
 
       String userPrompt = "I am a " + userPromptResponse.getUserAge() + " old "
               + userPromptResponse.getSex() +
-              "and  " ;
+              "and " + "i workout" + userPromptResponse.getWorkoutsPerWeek() + "times a week " +
+              "The recipes should include" + userPromptResponse.getMealChecklist() + "and " + userPromptResponse.getPreferences()
+              + ". My goals are" + userPromptResponse.getGoals();
 
       return service.makeRequest(userPrompt, SYSTEM_MESSAGE);
 

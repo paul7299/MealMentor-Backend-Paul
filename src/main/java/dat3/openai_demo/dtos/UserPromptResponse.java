@@ -13,13 +13,19 @@ import java.util.ArrayList;
 public class UserPromptResponse {
 
 
-    // @JsonProperty("sexValue")
+    @JsonProperty("age")
     int userAge;
+    @JsonProperty("weight")
     int userWeight;
+    @JsonProperty("sex")
     String sex;
+    @JsonProperty("activity-level")
     String workoutsPerWeek;
+    @JsonProperty("mealChecklistDiv")
     ArrayList<String> mealChecklist;
+    @JsonProperty("goals")
     String goals;
+    @JsonProperty("preference-input")
     ArrayList<String> preferences;
 
 
