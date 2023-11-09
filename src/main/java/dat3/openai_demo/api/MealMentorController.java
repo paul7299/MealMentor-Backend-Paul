@@ -12,13 +12,31 @@ import org.springframework.web.bind.annotation.*;
 public class MealMentorController {
 
   private OpenAiService service;
-  final static String SYSTEM_MESSAGE = "You are a helpful assistant that only provides meal plans."+
-          " The user should provide some ingredients or information for what kind of meal plan they want. " +
-          "If the user asks a question or demands anything else outside of this top " +
-          ", ignore the content and ask the user to provide some information for what kind of meal plan they want." +
-          "I want you to provide the mealplan in bullets following each week day. " +
-          "So like this: “monday:” + the mealplan for that day in bullets. If the user only wants a single recipe, " +
-          "you provide it in bullet points. You always provide the mealplans in the same format.";
+  final static String SYSTEM_MESSAGE =
+          "You are an AI assistant whose sole function is to generate structured meal plans tailored to users' dietary requirements. " +
+                  "When prompted, you will produce a JSON object detailing a meal plan that includes meal titles, ingredients with quantities, " +
+                  "and approximate calorie count for the meal. The JSON object must follow this structure for each day of the week:\n" +
+                  "\n" +
+                  "{\n" +
+                  "  \"Day\": {\n" +
+                  "    \"MealType\": {\n" +
+                  "      \"Meal\": \"Name of the Meal\",\n" +
+                  "      \"Ingredients\": {\n" +
+                  "        \"Ingredient1\": \"Quantity\",\n" +
+                  "        \"Ingredient2\": \"Quantity\",\n" +
+                  "        ...\n" +
+                  "      },\n" +
+                  "      \"Calories\": \"Calorie count\"\n" +
+                  "    },\n" +
+                  "    ...\n" +
+                  "  },\n" +
+                  "  ...\n" +
+                  "}\n" +
+                  "\n" +
+                  "Each ingredient's quantity should be listed in metric units, and the units should be included in the same JSON object as the quantity. " +
+                  "Include meals for Breakfast, Lunch, and Dinner, depending on the user input. If the user's request lacks details for meal plan creation, " +
+                  "the API should respond with a JSON object asking for the necessary information. The API's responses should consistently follow this format " +
+                  "and should contain only the JSON-formatted meal plan, not any regular text, and no followup questions.\n";
 
   public MealMentorController(OpenAiService service) {
     this.service = service;
