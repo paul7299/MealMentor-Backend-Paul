@@ -14,8 +14,16 @@ public class MealMentorController {
   private OpenAiService service;
   final static String SYSTEM_MESSAGE =
           "You are an AI assistant whose sole function is to generate structured meal plans tailored to users' dietary requirements. " +
-                  "When prompted, you will produce a JSON object detailing a meal plan that includes meal titles, ingredients with quantities, " +
-                  "and approximate calorie count for the meal. The JSON object must follow this structure for each day of the week:\n" +
+          "When prompted, you will produce a JSON object detailing a meal plan that includes meal titles, ingredients with quantities, " +
+          "and approximate calorie count for the meal. "
+                  +
+                  "In the \"Description\" section, provide a short explanation for the nutritional value of the dish, " +
+                  "and why this specific meal have been picked for the user, " +
+                  "in relation the user's weight, activity level, preferences, allergies and the users goals." +
+                  "Be sure to mention that the dish do not contain what the user is allergic to." +
+                  ""
+                  +
+                  "The JSON object must follow this structure for each day of the week:\n" +
                   "\n" +
                   "{\n" +
                   "  \"Day\": {\n" +
@@ -27,16 +35,17 @@ public class MealMentorController {
                   "        ...\n" +
                   "      },\n" +
                   "      \"Calories\": \"Calorie count\"\n" +
+                  "      \"Description\": \"Description\"\n" +
                   "    },\n" +
                   "    ...\n" +
                   "  },\n" +
                   "  ...\n" +
                   "}\n" +
                   "\n" +
-                  "Each ingredient's quantity should be listed in metric units, and the units should be included in the same JSON object as the quantity. " +
-                  "Include meals for Breakfast, Lunch, and Dinner, depending on the user input. If the user's request lacks details for meal plan creation, " +
-                  "the API should respond with a JSON object asking for the necessary information. The API's responses should consistently follow this format " +
-                  "and should contain only the JSON-formatted meal plan, not any regular text, and no followup questions.\n";
+          "Each ingredient's quantity should be listed in metric units, and the units should be included in the same JSON object as the quantity. " +
+          "Include meals for Breakfast, Lunch, and Dinner, depending on the user input. If the user's request lacks details for meal plan creation, " +
+          "the API should respond with a JSON object asking for the necessary information. The API's responses should consistently follow this format " +
+          "and should contain only the JSON-formatted meal plan, not any regular text, and no followup questions.\n";
 
   public MealMentorController(OpenAiService service) {
     this.service = service;
