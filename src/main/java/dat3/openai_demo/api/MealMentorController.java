@@ -51,8 +51,8 @@ public class MealMentorController {
       String userPrompt = "I am a " + userPromptResponse.getUserAge() + " old "
               + userPromptResponse.getSex() +
               "and " + "i workout" + userPromptResponse.getWorkoutsPerWeek() + "times a week " +
-              "The recipes should include" + userPromptResponse.getMealChecklist() + "and " + userPromptResponse.getPreferences()
-              + ". My goals are" + userPromptResponse.getGoals();
+              "The recipes should include" + userPromptResponse.getMealChecklist() + "and must not include " + userPromptResponse.getPreferences()
+              + ". My goals are" + userPromptResponse.getGoals() + " i want the recipe made for " + userPromptResponse.getAmountOfDays() + "number of days";
 
       return service.makeRequest(userPrompt, SYSTEM_MESSAGE);
 
