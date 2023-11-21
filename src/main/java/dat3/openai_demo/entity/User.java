@@ -23,6 +23,6 @@ public class User {
     String sex;
     String activityLevel;
     String goals;
-    @OneToMany(mappedBy = "meal")
+    @OneToMany(mappedBy = "user")
     List<Meal> meals;
 }
