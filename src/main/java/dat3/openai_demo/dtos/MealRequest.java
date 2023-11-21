@@ -18,9 +18,11 @@ public class MealRequest {
     int carbs;
     int fat;
 
+    /*
     public static Meal getMealEntity(MealRequest mr){
+
         return new Meal(mr.getMealId(), mr.getMealType(), mr.getTitle(), mr.getInstructions(), mr.getCalories(), mr.getProtein(), mr.getCarbs(), mr.getFat());
-    }
+    }  */
 
     public MealRequest(Meal meal){
         this.mealId = meal.getMealId();

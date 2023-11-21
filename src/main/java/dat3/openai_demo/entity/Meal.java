@@ -17,8 +17,8 @@ public class Meal {
     int mealId;
     String mealType;
     String title;
-    //@OneToMany(mappedBy = "meal")
-    //List<Ingredients> ingredients;
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    List<Ingredient> ingredients;
     String instructions;
     int calories;
     int protein;

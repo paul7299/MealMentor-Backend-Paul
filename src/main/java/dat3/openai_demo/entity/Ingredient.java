@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
-// @Entity
+@Entity
 public class Ingredient {
     @Id
     String name;
