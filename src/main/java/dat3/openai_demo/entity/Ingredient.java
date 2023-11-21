@@ -8,14 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-public class Ingredients {
+
+@NoArgsConstructor @Getter @Setter @AllArgsConstructor
+
+// @Entity
+public class Ingredient {
     @Id
-    String ingredient;
+    String name;
     @ManyToOne
     Meal meal;
 }

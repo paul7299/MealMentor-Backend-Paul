@@ -8,13 +8,12 @@ import lombok.Setter;
 
 import java.util.List;
 
+@NoArgsConstructor @Getter @Setter @AllArgsConstructor
+
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Meal {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int mealId;
     String mealType;
     String title;

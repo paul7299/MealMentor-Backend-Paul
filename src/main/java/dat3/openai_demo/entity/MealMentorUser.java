@@ -6,23 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+
+@NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class User {
+public class MealMentorUser {
     @Id
     String username;
     int weight;
     int height;
-    @ManyToMany
-    List<Allergies> allergies;
+    //@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    // List<Allergy> allergies;
     String sex;
+    @Column(name="activity_level")
     String activityLevel;
     String goals;
-    @OneToMany(mappedBy = "user")
-    List<Meal> meals;
+
 }

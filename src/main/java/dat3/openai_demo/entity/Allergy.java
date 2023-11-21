@@ -7,12 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class Allergies {
+@NoArgsConstructor @Getter @Setter @AllArgsConstructor
+
+//@Entity
+public class Allergy {
     @Id
-    String allergy;
+    String name;
+
 }
