@@ -18,8 +18,8 @@ public class Meal {
     int mealId;
     String mealType;
     String title;
-    @OneToMany(mappedBy = "ingredients")
-    List<Ingredients> ingredients;
+    //@OneToMany(mappedBy = "meal")
+    //List<Ingredients> ingredients;
     String instructions;
     int calories;
     int protein;
