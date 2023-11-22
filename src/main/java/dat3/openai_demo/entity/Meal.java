@@ -32,7 +32,7 @@ public class Meal {
     @JoinTable(
             name = "meal_ingredient", // Navnet på join-tabellen
             joinColumns = @JoinColumn(name = "meal_id"), // Kolonnen i join-tabellen, der refererer til `Meal id`
-            inverseJoinColumns = @JoinColumn(name = "ingredient_name") // Kolonnen i join-tabellen, der refererer til `Ingredient`
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Kolonnen i join-tabellen, der refererer til `Ingredient`
     )
     List<Ingredient> ingredients;
 
