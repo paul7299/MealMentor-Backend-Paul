@@ -1,9 +1,11 @@
 package dat3.openai_demo.config;
 
 import dat3.openai_demo.entity.Allergy;
+import dat3.openai_demo.entity.Ingredient;
 import dat3.openai_demo.entity.Meal;
 import dat3.openai_demo.entity.User;
 import dat3.openai_demo.repository.AllergyRepository;
+import dat3.openai_demo.repository.IngredientRepository;
 import dat3.openai_demo.repository.MealRepository;
 import dat3.openai_demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -20,15 +22,17 @@ public class DeveloperData implements ApplicationRunner {
     MealRepository mealRepository;
     UserRepository userRepository;
     AllergyRepository allergyRepository;
+    IngredientRepository ingredientRepository;
 
     String passwordUsedByAll;
 
-    public DeveloperData(MealRepository mealRepository, UserRepository userRepository, AllergyRepository allergyRepository) {
+
+    public DeveloperData(MealRepository mealRepository, UserRepository userRepository, AllergyRepository allergyRepository, IngredientRepository ingredientRepository) {
         this.mealRepository = mealRepository;
         this.userRepository = userRepository;
         this.allergyRepository = allergyRepository;
+        this.ingredientRepository = ingredientRepository;
     }
-
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -66,12 +70,19 @@ public class DeveloperData implements ApplicationRunner {
 
     private void setupTestMeals() {
 
-        Meal meal1 = new Meal();
-        Meal meal2 = new Meal();
-
-
+        Meal meal1 = new Meal("breakfast", "tomato breakfast", "bake it", 100, 50, 200, 10);
+        Meal meal2 = new Meal("lunch", "banana lunch", "eat it raw", 100, 50, 200, 10);
 
         mealRepository.saveAll(Arrays.asList(meal1, meal2));
+
+        Ingredient ingredient = new Ingredient("1 Tomato", meal1);
+        Ingredient ingredient2 = new Ingredient("2 Bananas", meal2);
+        Ingredient ingredient3 = new Ingredient("1 Tomato", meal2);
+
+        ingredientRepository.save(ingredient);
+        ingredientRepository.save(ingredient2);
+        ingredientRepository.save(ingredient3);
+
 
 
     }

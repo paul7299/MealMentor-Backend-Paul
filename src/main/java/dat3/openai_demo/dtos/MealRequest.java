@@ -25,7 +25,7 @@ public class MealRequest {
     }  */
 
     public MealRequest(Meal meal){
-        this.mealId = meal.getMealId();
+        this.mealId = meal.getId();
         this.mealType = meal.getMealType();
         this.title = meal.getTitle();
         this.instructions = meal.getInstructions();
