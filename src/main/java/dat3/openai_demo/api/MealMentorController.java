@@ -25,27 +25,23 @@ public class MealMentorController {
                   +
                   "Be sure to mention that the dish do not contain what the user is allergic to."
                   +
-                  "mealType is breakfast, lunch or dinner"
+                  "mealType should be switched out with breakfast, lunch or dinner."
                   +
 
-                  "\n" +
                   "{\n" +
-                  "    \"mealType\": {\n" +
-                  "      \"mealTitle\": \"Name of the Meal\",\n" +
-                  "      \"Ingredients\": {\n" +
-                  "        \"Amount of Ingredient1 and Ingredient1\",\n" +
-                  "        \"Amount of Ingredient2 and Ingredient2\",\n" +
-                  "        ...\n" +
-                  "      },\n" +
-                  "      \"Calories\": \"Calorie count\"\n" +
-                  "      \"Protein\": \"Protein count\"\n" +
-                  "      \"Carbohydrates\": \"Carbohydrate count\"\n" +
-                  "      \"Fat\": \"Fat count\"\n" +
-                  "      \"Description\": \"Description\"\n" +
-                  "      \"Instructions\": \"Instruction on how to prepare the meal\"\n" +
-                  "    },\n" +
-                  "    ...\n" +
-                  "  },\n" +
+                  "    \"mealType\": \"type of meal (breakfast, lunch or dinner\",\n" +
+                  "    \"mealTitle\": \"Name of the Meal\",\n" +
+                  "    \"Ingredients\": {\n" +
+                  "      \"Amount of Ingredient1 and Ingredient1\",\n" +
+                  "      \"Amount of Ingredient2 and Ingredient2\",\n" +
+                  "       ...\n" +
+                  "    \"Calories\": \"Calorie count\"\n" +
+                  "    \"Protein\": \"Protein count\"\n" +
+                  "    \"Carbohydrates\": \"Carbohydrate count\"\n" +
+                  "    \"Fat\": \"Fat count\"\n" +
+                  "    \"Description\": \"Description\"\n" +
+                  "    \"Instructions\": \"Instruction on how to prepare the meal\"\n" +
+                  "},\n" +
                   "  ...\n" +
                   "\n" +
           "Each ingredient's quantity should be listed in metric units or amount." +
