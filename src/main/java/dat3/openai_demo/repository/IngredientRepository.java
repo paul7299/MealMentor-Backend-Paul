@@ -1,4 +1,4 @@
-/*
+
 package dat3.openai_demo.repository;
 
 import dat3.openai_demo.entity.Allergy;
@@ -11,4 +11,3 @@ public interface IngredientRepository extends JpaRepository<Ingredient, String> 
 }
 
 
- */

@@ -1,14 +1,16 @@
-/*package dat3.openai_demo.entity;
+package dat3.openai_demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 
-@NoArgsConstructor @Getter @Setter @AllArgsConstructor
-
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name="ingredient")
 public class Ingredient {
@@ -18,14 +20,11 @@ public class Ingredient {
 
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "meal_id") // Specify the name of the foreign key column
-    private Meal meal;
+    @ManyToMany
+    private List<Meal> meal;
 
 
-    public Ingredient(String name, Meal meal) {
+    public Ingredient(String name) {
         this.name = name;
-        this.meal = meal;
     }
 }
-*/
