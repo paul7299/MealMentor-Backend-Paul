@@ -41,7 +41,7 @@ public class OpenAiService {
   public final static String URL = "https://api.openai.com/v1/chat/completions";
   public final static String MODEL = "gpt-3.5-turbo";
   public final static double TEMPERATURE = 0.8;
-  public final static int MAX_TOKENS = 300;
+  public final static int MAX_TOKENS = 3000;
   public final static double FREQUENCY_PENALTY = 0.0;
   public final static double PRESENCE_PENALTY = 0.0;
   public final static double TOP_P = 1.0;
@@ -85,9 +85,17 @@ public class OpenAiService {
               .block();
       String responseMsg = response.getChoices().get(0).getMessage().getContent();
       int tokensUsed = response.getUsage().getTotal_tokens();
-      System.out.print("Tokens used: " + tokensUsed);
-      System.out.print(". Cost ($0.001 / 1K tokens) : $" + String.format("%6f",(tokensUsed * 0.001 / 1000)));
-      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1/(tokensUsed * 0.001 / 1000)));
+      int promptTokens = response.getUsage().getPrompt_tokens();
+      System.out.println("Tokens used: " + tokensUsed);
+      System.out.print(". Cost ($0.002 / 1K tokens) : $" + String.format("%6f",(tokensUsed * 0.002 / 1000)));
+      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1/(tokensUsed * 0.002 / 1000)));
+
+      System.out.println("Prompt tokens used: " + promptTokens);
+      System.out.print(". Cost ($0.001 / 1K tokens) : $" + String.format("%6f",(promptTokens * 0.001 / 1000)));
+      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1/(promptTokens * 0.001 / 1000)));
+
+      System.out.println("For 1$, you can make a total of: " + Math.round(1/((promptTokens* 0.001/1000) + (tokensUsed * 0.002 / 1000))) + " prompts and responses");
+
       return new MyResponse(responseMsg);
     }
     catch (WebClientResponseException e){

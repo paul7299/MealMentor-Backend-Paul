@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
 @Entity
+@Table(name="Meals")
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

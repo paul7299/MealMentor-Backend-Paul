@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
 @Entity
+@Table(name="Users")
 public class User {
     @Id
     String username;
