@@ -18,11 +18,17 @@ public class User {
     String username;
     int weight;
     int height;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "user_allergy", // Navnet på join-tabellen
+            joinColumns = @JoinColumn(name = "username"), // Kolonnen i join-tabellen, der refererer til `User`
+            inverseJoinColumns = @JoinColumn(name = "allergy_name") // Kolonnen i join-tabellen, der refererer til `Allergy`
+    )
     List<Allergy> allergies;
     String sex;
     @Column(name="activity_level")
     String activityLevel;
     String goals;
+
 
 }
