@@ -1,4 +1,4 @@
-package dat3.openai_demo.entity;
+/*package dat3.openai_demo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
 @Entity
-@Table(name="Ingredients")
+@Table(name="ingredient")
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,13 @@ public class Ingredient {
     String name;
 
     @ManyToOne
-    Meal meal;
+    @JoinColumn(name = "meal_id") // Specify the name of the foreign key column
+    private Meal meal;
+
 
     public Ingredient(String name, Meal meal) {
         this.name = name;
         this.meal = meal;
     }
 }
+*/

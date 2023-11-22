@@ -1,4 +1,4 @@
-package dat3.openai_demo.entity;
+/*package dat3.openai_demo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
 @Entity
-@Table(name="Meals")
+@Table(name="meal")
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Meal {
     String mealType;
     String title;
 
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Ingredient> ingredients;
 
     String instructions;
@@ -39,3 +39,4 @@ public class Meal {
         this.fat = fat;
     }
 }
+*/

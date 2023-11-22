@@ -1,12 +1,12 @@
 package dat3.openai_demo.config;
 
 import dat3.openai_demo.entity.Allergy;
-import dat3.openai_demo.entity.Ingredient;
-import dat3.openai_demo.entity.Meal;
+//import dat3.openai_demo.entity.Ingredient;
+//import dat3.openai_demo.entity.Meal;
 import dat3.openai_demo.entity.User;
 import dat3.openai_demo.repository.AllergyRepository;
-import dat3.openai_demo.repository.IngredientRepository;
-import dat3.openai_demo.repository.MealRepository;
+//import dat3.openai_demo.repository.IngredientRepository;
+//import dat3.openai_demo.repository.MealRepository;
 import dat3.openai_demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.ApplicationArguments;
@@ -19,19 +19,17 @@ import java.util.List;
 
 @Controller
 public class DeveloperData implements ApplicationRunner {
-    MealRepository mealRepository;
+  //  MealRepository mealRepository;
     UserRepository userRepository;
     AllergyRepository allergyRepository;
-    IngredientRepository ingredientRepository;
+    // IngredientRepository ingredientRepository;
 
     String passwordUsedByAll;
 
 
-    public DeveloperData(MealRepository mealRepository, UserRepository userRepository, AllergyRepository allergyRepository, IngredientRepository ingredientRepository) {
-        this.mealRepository = mealRepository;
+    public DeveloperData(UserRepository userRepository, AllergyRepository allergyRepository) {
         this.userRepository = userRepository;
         this.allergyRepository = allergyRepository;
-        this.ingredientRepository = ingredientRepository;
     }
 
     @Override
@@ -64,12 +62,7 @@ public class DeveloperData implements ApplicationRunner {
 
 
         userRepository.saveAll(Arrays.asList(user1, user2));
-
-    }
-
-
-    private void setupTestMeals() {
-
+        /*
         Meal meal1 = new Meal("breakfast", "tomato breakfast", "bake it", 100, 50, 200, 10);
         Meal meal2 = new Meal("lunch", "banana lunch", "eat it raw", 100, 50, 200, 10);
 
@@ -82,6 +75,13 @@ public class DeveloperData implements ApplicationRunner {
         ingredientRepository.save(ingredient);
         ingredientRepository.save(ingredient2);
         ingredientRepository.save(ingredient3);
+*/
+    }
+
+
+    private void setupTestMeals() {
+
+
 
 
 

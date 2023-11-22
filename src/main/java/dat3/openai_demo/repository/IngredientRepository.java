@@ -1,3 +1,4 @@
+/*
 package dat3.openai_demo.repository;
 
 import dat3.openai_demo.entity.Allergy;
@@ -8,3 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, String> {
 }
+
+
+ */
