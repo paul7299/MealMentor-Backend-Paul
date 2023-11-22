@@ -1,13 +1,12 @@
 package dat3.openai_demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @NoArgsConstructor @Getter @Setter @AllArgsConstructor
 
@@ -17,7 +16,13 @@ public class Allergy {
     @Id
     String name;
 
-    @ManyToOne
-    User user;
+    @ManyToMany(mappedBy = "allergies")
+    List<User> users;
 
+    public Allergy(String name) {
+        this.name = name;
+    }
 }
+
+
+
