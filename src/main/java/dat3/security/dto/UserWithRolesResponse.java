@@ -1,9 +1,9 @@
-package security.dto;
+package dat3.security.dto;
 
 
+import dat3.security.entity.UserWithRoles;
 import lombok.Getter;
 import lombok.Setter;
-import security.entity.UserWithRoles;
 
 import java.util.List;
 import java.util.stream.Collectors;

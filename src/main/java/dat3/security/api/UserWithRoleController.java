@@ -1,12 +1,12 @@
-package security.api;
+package dat3.security.api;
 
 
+import dat3.security.dto.UserWithRolesRequest;
+import dat3.security.dto.UserWithRolesResponse;
+import dat3.security.entity.Role;
+import dat3.security.service.UserWithRolesService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import security.dto.UserWithRolesRequest;
-import security.dto.UserWithRolesResponse;
-import security.entity.Role;
-import security.service.UserWithRolesService;
 
 @RestController
 @RequestMapping("/api/user-with-role")

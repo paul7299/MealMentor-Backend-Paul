@@ -1,8 +1,8 @@
-package security.repository;
+package dat3.security.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import security.entity.UserWithRoles;
+import dat3.security.entity.UserWithRoles;
 
 public interface
 UserWithRolesRepository extends JpaRepository<UserWithRoles,String> {

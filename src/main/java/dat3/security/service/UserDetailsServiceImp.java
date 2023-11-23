@@ -1,14 +1,14 @@
-package security.service;
+package dat3.security.service;
 
 
+import dat3.security.entity.UserWithRoles;
+import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import security.entity.UserWithRoles;
-import security.repository.UserWithRolesRepository;
 
 import java.util.Optional;
 

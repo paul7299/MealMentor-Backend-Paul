@@ -1,4 +1,4 @@
-package security.config;
+package dat3.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

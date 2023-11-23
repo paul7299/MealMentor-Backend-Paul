@@ -1,4 +1,4 @@
-package security.error;
+package dat3.security.error;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;

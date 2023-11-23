@@ -1,5 +1,6 @@
-package security.for_security_tests;
+package dat3.security.for_security_tests;
 
+import dat3.security.service.UserWithRolesService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.Profile;
@@ -7,7 +8,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import security.service.UserWithRolesService;
 
 import java.security.Principal;
 

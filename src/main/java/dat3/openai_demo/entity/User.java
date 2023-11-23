@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import security.entity.Role;
-import security.entity.UserWithRoles;
+import dat3.security.entity.UserWithRoles;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 
