@@ -8,21 +8,41 @@ import lombok.Setter;
 
 import java.util.List;
 
-@NoArgsConstructor @Getter @Setter @AllArgsConstructor
-
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
-@Table(name="Meals")
+@Table(name = "Meals")
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int mealId;
+    @Column(name="meal_id", unique = true, nullable = false)
+    private int id;
+
     String mealType;
     String title;
-    @OneToMany(mappedBy = "meal", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    List<Ingredient> ingredients;
     String instructions;
     int calories;
-    int protein;
     int carbs;
     int fat;
+    int protein;
+
+    @ManyToMany
+    @JoinTable(
+            name = "meal_ingredient", // Navnet på join-tabellen
+            joinColumns = @JoinColumn(name = "meal_id"), // Kolonnen i join-tabellen, der refererer til `Meal id`
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Kolonnen i join-tabellen, der refererer til `Ingredient`
+    )
+    List<Ingredient> ingredients;
+
+    public Meal(String mealType, String title, String instructions, int calories, int carbs, int fat, int protein) {
+        this.mealType = mealType;
+        this.title = title;
+        this.instructions = instructions;
+        this.calories = calories;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.protein = protein;
+    }
 }

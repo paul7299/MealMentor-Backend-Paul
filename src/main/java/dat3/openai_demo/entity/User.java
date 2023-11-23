@@ -15,13 +15,14 @@ import java.util.List;
 @Table(name="Users")
 public class User {
     @Id
+    @Column(name="username_id", unique = true, nullable = false)
     String username;
     int weight;
     int height;
     @ManyToMany
     @JoinTable(
             name = "user_allergy", // Navnet på join-tabellen
-            joinColumns = @JoinColumn(name = "username"), // Kolonnen i join-tabellen, der refererer til `User`
+            joinColumns = @JoinColumn(name = "username_id"), // Kolonnen i join-tabellen, der refererer til `User`
             inverseJoinColumns = @JoinColumn(name = "allergy_name") // Kolonnen i join-tabellen, der refererer til `Allergy`
     )
     List<Allergy> allergies;

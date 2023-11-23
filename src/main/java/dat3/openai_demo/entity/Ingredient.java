@@ -1,22 +1,30 @@
 package dat3.openai_demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 
-@NoArgsConstructor @Getter @Setter @AllArgsConstructor
-
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name="Ingredients")
+@Table(name="ingredient")
 public class Ingredient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
     String name;
-    @ManyToOne
-    Meal meal;
+
+    @ManyToMany
+    private List<Meal> meal;
+
+
+    public Ingredient(String name) {
+        this.name = name;
+    }
 }

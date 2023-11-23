@@ -1,3 +1,4 @@
+/*
 package dat3.openai_demo.dtos;
 
 import dat3.openai_demo.entity.Meal;
@@ -19,7 +20,7 @@ public class MealResponse {
     int fat;
 
     public MealResponse(Meal meal){
-        this.mealId = meal.getMealId();
+        this.mealId = meal.getId();
         this.mealType = meal.getMealType();
         this.title = meal.getTitle();
         this.instructions = meal.getInstructions();
@@ -29,3 +30,4 @@ public class MealResponse {
         this.fat = meal.getFat();
     }
 }
+*/
