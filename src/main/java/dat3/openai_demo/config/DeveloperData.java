@@ -27,11 +27,12 @@ public class DeveloperData implements ApplicationRunner {
     String passwordUsedByAll;
 
 
-    public DeveloperData(MealRepository mealRepository, UserRepository userRepository, AllergyRepository allergyRepository, IngredientRepository ingredientRepository) {
-        this.mealRepository = mealRepository;
+    public DeveloperData(UserRepository userRepository, AllergyRepository allergyRepository, MealRepository mealRepository,
+                         IngredientRepository ingredientRepository) {
         this.userRepository = userRepository;
         this.allergyRepository = allergyRepository;
         this.ingredientRepository = ingredientRepository;
+        this.mealRepository = mealRepository;
     }
 
     @Override
@@ -65,6 +66,9 @@ public class DeveloperData implements ApplicationRunner {
 
         userRepository.saveAll(Arrays.asList(user1, user2));
 
+
+
+
     }
 
 
@@ -73,15 +77,16 @@ public class DeveloperData implements ApplicationRunner {
         Meal meal1 = new Meal("breakfast", "tomato breakfast", "bake it", 100, 50, 200, 10);
         Meal meal2 = new Meal("lunch", "banana lunch", "eat it raw", 100, 50, 200, 10);
 
-        mealRepository.saveAll(Arrays.asList(meal1, meal2));
-
-        Ingredient ingredient = new Ingredient("1 Tomato", meal1);
-        Ingredient ingredient2 = new Ingredient("2 Bananas", meal2);
-        Ingredient ingredient3 = new Ingredient("1 Tomato", meal2);
-
+        Ingredient ingredient = new Ingredient("1 Tomato");
+        Ingredient ingredient2 = new Ingredient("Bananas");
+        Ingredient ingredient3 = new Ingredient("1 Tomato");
         ingredientRepository.save(ingredient);
         ingredientRepository.save(ingredient2);
         ingredientRepository.save(ingredient3);
+        List<Ingredient> ingToMeal2 = new ArrayList<>();
+        ingToMeal2.add(ingredient2);
+        meal2.setIngredients(ingToMeal2);
+        mealRepository.saveAll(Arrays.asList(meal1, meal2));
 
 
 
