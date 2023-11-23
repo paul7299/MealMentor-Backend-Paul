@@ -27,27 +27,34 @@ public class MealMentorController {
                   +
                   "mealType is breakfast, lunch or dinner"
                   +
+                  "......"
+                  +
+                  "{"
+                  + "\"Day\": \"Monday\","
+                  + "\"Meals\": ["
+                  + "  {"
+                  + "    \"Type of Meal\": \"Breakfast\","
+                  + "    \"Title\": \"Protein-Packed Omelette\","
+                  + "    \"Ingredients\": ["
+                  + "      \"3 eggs\","
+                  + "      \"100g lean turkey breast, diced\","
+                  + "      \"50g spinach\","
+                  + "      \"30g low-fat cheese, grated\","
+                  + "      \"1/2 red bell pepper, diced\","
+                  + "      \"1/4 onion, diced\","
+                  + "      \"Salt and pepper to taste\""
+                  + "    ],"
+                  + "    \"Calories\": \"450\","
+                  + "    \"Protein\": \"40g\","
+                  + "    \"Carbohydrates\": \"10g\","
+                  + "    \"Fat\": \"25g\","
+                  + "    \"Description\": \"This omelette is packed with protein from the eggs and lean turkey breast. It also contains spinach, which is rich in vitamins and minerals. The low-fat cheese adds a creamy texture without adding excessive calories. This meal is great for weight loss as it provides a satisfying amount of protein to support muscle growth and repair while keeping the calorie count moderate.\","
+                  + "    \"Instructions\": \"1. In a bowl, whisk the eggs with salt and pepper. 2. Heat a non-stick pan over medium heat and add the diced turkey breast, onion, and bell pepper. Cook until the turkey is browned and the vegetables are softened. 3. Add the spinach to the pan and cook until wilted. 4. Pour the whisked eggs over the turkey and vegetables. Cook until the eggs are set. 5. Sprinkle the grated low-fat cheese over the omelette. 6. Carefully fold the omelette in half and cook for another minute to melt the cheese. 7. Serve hot.\""
+                  + "  }"
+                  + "]"
+                  + "}"
+                  +
 
-                  "\n" +
-                  "{\n" +
-                  "    \"mealType\": {\n" +
-                  "      \"mealTitle\": \"Name of the Meal\",\n" +
-                  "      \"Ingredients\": {\n" +
-                  "        \"Amount of Ingredient1 and Ingredient1\",\n" +
-                  "        \"Amount of Ingredient2 and Ingredient2\",\n" +
-                  "        ...\n" +
-                  "      },\n" +
-                  "      \"Calories\": \"Calorie count\"\n" +
-                  "      \"Protein\": \"Protein count\"\n" +
-                  "      \"Carbohydrates\": \"Carbohydrate count\"\n" +
-                  "      \"Fat\": \"Fat count\"\n" +
-                  "      \"Description\": \"Description\"\n" +
-                  "      \"Instructions\": \"Instruction on how to prepare the meal\"\n" +
-                  "    },\n" +
-                  "    ...\n" +
-                  "  },\n" +
-                  "  ...\n" +
-                  "\n" +
           "Each ingredient's quantity should be listed in metric units or amount." +
           "Include meals for Breakfast, Lunch, and/or Dinner, depending on the user input. " +
                   "If the user's request lacks details for meal plan creation, " +
