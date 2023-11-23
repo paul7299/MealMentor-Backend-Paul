@@ -17,7 +17,7 @@ public class Allergy {
     @Column(name="allergy_name", unique = true, nullable = false)
     String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "allergies")
     List<User> users;
 
     public Allergy(String name) {
