@@ -20,7 +20,7 @@ public class Ingredient {
 
     String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "ingredients")
     private List<Meal> meal;
 
 
