@@ -24,7 +24,7 @@ public class DeveloperData implements ApplicationRunner {
     AllergyRepository allergyRepository;
     IngredientRepository ingredientRepository;
 
-    String passwordUsedByAll;
+    String passwordUsedByAll = "password";
 
 
     public DeveloperData(UserRepository userRepository, AllergyRepository allergyRepository, MealRepository mealRepository,
@@ -60,14 +60,13 @@ public class DeveloperData implements ApplicationRunner {
         allergies2.add(peanutAllergy);
         allergies2.add(fishAllergy);
 
-        User user1 = new User("testuser1", 80, 180, allergies, "Male", "Moderate", "Gain muscle");
-        User user2 = new User("testuser2", 50, 200, allergies2, "Male", "No excercise", "Lose weight");
+        User user1 = new User("testuser1", passwordUsedByAll, "testuser1@test.dk",
+                80, 180, 25, allergies, "Male", "Moderate", "Gain muscle");
+        User user2 = new User("testuser2", passwordUsedByAll, "testuser2@test.dk",
+                50, 200, 20, allergies2, "Male", "No excercise", "Lose weight");
 
 
         userRepository.saveAll(Arrays.asList(user1, user2));
-
-
-
 
     }
 
@@ -87,8 +86,6 @@ public class DeveloperData implements ApplicationRunner {
         ingToMeal2.add(ingredient2);
         meal2.setIngredients(ingToMeal2);
         mealRepository.saveAll(Arrays.asList(meal1, meal2));
-
-
 
     }
 

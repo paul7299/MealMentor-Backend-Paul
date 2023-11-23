@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import security.entity.Role;
+import security.entity.UserWithRoles;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -13,12 +16,11 @@ import java.util.List;
 
 @Entity
 @Table(name="Users")
-public class User {
-    @Id
-    @Column(name="username_id", unique = true, nullable = false)
-    String username;
+public class User extends UserWithRoles {
+
     int weight;
     int height;
+    int age;
     @ManyToMany
     @JoinTable(
             name = "user_allergy", // Navnet på join-tabellen
@@ -32,4 +34,18 @@ public class User {
     String goals;
 
 
+    public User(String username, String password, String email,
+                int weight, int height, int age, List<Allergy> allergies, String sex,
+                String activityLevel, String goals) {
+
+        super(username, password, email);
+        this.weight = weight;
+        this.height = height;
+        this.age = age;
+        this.allergies = allergies;
+        this.sex = sex;
+        this.activityLevel = activityLevel;
+        this.goals = goals;
+    }
 }
+
