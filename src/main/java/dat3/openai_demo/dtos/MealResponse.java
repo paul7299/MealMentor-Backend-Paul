@@ -1,4 +1,3 @@
-/*
 package dat3.openai_demo.dtos;
 
 import dat3.openai_demo.entity.Meal;
@@ -30,4 +29,3 @@ public class MealResponse {
         this.fat = meal.getFat();
     }
 }
-*/

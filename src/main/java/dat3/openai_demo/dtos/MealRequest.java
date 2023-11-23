@@ -1,5 +1,5 @@
 package dat3.openai_demo.dtos;
-/*
+
 import dat3.openai_demo.entity.Meal;
 import lombok.*;
 
@@ -20,8 +20,7 @@ public class MealRequest {
 
 
     public static Meal getMealEntity(MealRequest mr){
-
-        return new Meal(mr.getMealId(), mr.getMealType(), mr.getTitle(), mr.getInstructions(), mr.getCalories(), mr.getProtein(), mr.getCarbs(), mr.getFat());
+        return new Meal(mr.getMealType(), mr.getTitle(), mr.getInstructions(), mr.getCalories(), mr.getProtein(), mr.getCarbs(), mr.getFat());
     }
 
     public MealRequest(Meal meal){
@@ -35,4 +34,3 @@ public class MealRequest {
         this.fat = meal.getFat();
     }
 }
-*/
