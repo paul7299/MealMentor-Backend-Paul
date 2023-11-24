@@ -16,7 +16,6 @@ import java.util.List;
 
 @Entity
 @Table(name="Users")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User extends UserWithRoles {
 
     int weight;
@@ -28,6 +27,7 @@ public class User extends UserWithRoles {
             joinColumns = @JoinColumn(name = "username_id"), // Kolonnen i join-tabellen, der refererer til `User`
             inverseJoinColumns = @JoinColumn(name = "allergy_name") // Kolonnen i join-tabellen, der refererer til `Allergy`
     )
+    @JsonIgnoreProperties("users")
     List<Allergy> allergies;
     String sex;
     @Column(name="activity_level")

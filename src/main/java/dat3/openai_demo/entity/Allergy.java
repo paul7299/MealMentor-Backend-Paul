@@ -1,5 +1,6 @@
 package dat3.openai_demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Allergy {
     String name;
 
     @ManyToMany(mappedBy = "allergies")
+    @JsonIgnoreProperties("allergies")
     List<User> users;
 
     public Allergy(String name) {
