@@ -1,5 +1,6 @@
 package dat3.openai_demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import dat3.security.entity.UserWithRoles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name="Users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User extends UserWithRoles {
 
     int weight;
@@ -44,6 +47,13 @@ public class User extends UserWithRoles {
         this.sex = sex;
         this.activityLevel = activityLevel;
         this.goals = goals;
+    }
+
+    public void addAllergy(Allergy allergy){
+        if (this.allergies == null){
+            this.allergies = new ArrayList<>();
+        }
+        this.allergies.add(allergy);
     }
 }
 

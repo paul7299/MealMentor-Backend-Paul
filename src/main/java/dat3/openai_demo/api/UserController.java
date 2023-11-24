@@ -1,40 +1,37 @@
 package dat3.openai_demo.api;
 
 import dat3.openai_demo.dtos.UserRequest;
+import dat3.openai_demo.dtos.UserResponse;
 import dat3.openai_demo.entity.User;
 import dat3.openai_demo.repository.UserRepository;
+import dat3.openai_demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @GetMapping
-    public ResponseEntity<User> getUser(@RequestParam String username){
-        User user = userRepository.findByUsername(username);
-        if (user != null)
-            return ResponseEntity.ok(user);
-        else return ResponseEntity.notFound().build();
+    public List<UserResponse> getUsers(){
+        return userService.getUsers();
+    }
+
+    @GetMapping("{username}")
+    public UserResponse getUser(@PathVariable String username){
+        return userService.getUser(username);
     }
 
     @PutMapping("{username}")
-    public ResponseEntity<String> updateUserSettings(@PathVariable String username, @RequestBody UserRequest userRequest){
-        User userEdit = userRepository.findByUsername(username);
-
-        if (userEdit != null){
-            userEdit.setWeight(userRequest.getWeight());
-            userEdit.setHeight(userRequest.getHeight());
-            userEdit.setAge(userRequest.getAge());
-            userEdit.setAllergies(userRequest.getAllergies());
-            userEdit.setActivityLevel(userRequest.getActivityLevel());
-
-            userRepository.save(userEdit);
-            return ResponseEntity.ok("User updated");
-        }
-        else return ResponseEntity.notFound().build();
+    public UserResponse updateUserSettings(@PathVariable String username, @RequestBody UserRequest userRequest){
+        return userService.updateUser(userRequest, username);
     }
 }

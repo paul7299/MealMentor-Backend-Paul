@@ -1,19 +1,40 @@
 package dat3.openai_demo.service;
 
+import dat3.openai_demo.dtos.UserRequest;
+import dat3.openai_demo.dtos.UserResponse;
 import dat3.openai_demo.entity.Allergy;
 import dat3.openai_demo.entity.User;
+import dat3.openai_demo.repository.AllergyRepository;
 import dat3.openai_demo.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
 public class UserService {
 
     private UserRepository userRepository;
+    private AllergyRepository allergyRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, AllergyRepository allergyRepository) {
         this.userRepository = userRepository;
+        this.allergyRepository = allergyRepository;
     }
 
+    public List<UserResponse> getUsers(){
+        List<User> users = userRepository.findAll();
+        return users.stream().map(UserResponse::new).collect(Collectors.toList());
+    }
+
+    public UserResponse getUser(String username){
+        User user = userRepository.findById(username).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found"));
+
+        return new UserResponse(user);
+    }
 
     public User createUser(String username, int weight, int height, String sex, String activityLevel, String goals, List<Allergy> allergies) {
         User newUser = new User();
@@ -27,4 +48,21 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    public UserResponse updateUser(UserRequest body, String username){
+        User editUser = userRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found"));
+
+        editUser.setWeight(body.getWeight());
+        editUser.setHeight(body.getHeight());
+        editUser.setAge(body.getAge());
+
+        for (Allergy allergy : body.getAllergies()){
+            Allergy newAllergy = allergyRepository.findByName(allergy.getName());
+            editUser.addAllergy(newAllergy);
+        }
+        editUser.setSex(body.getSex());
+        editUser.setActivityLevel(body.getActivityLevel());
+
+        return new UserResponse(userRepository.save(editUser));
+    }
 }
