@@ -58,6 +58,9 @@ public class UserService {
 
         for (Allergy allergy : body.getAllergies()){
             Allergy newAllergy = allergyRepository.findByName(allergy.getName());
+            if(newAllergy == null){
+                newAllergy = allergyRepository.save(allergy);
+            }
             editUser.addAllergy(newAllergy);
         }
         editUser.setSex(body.getSex());
