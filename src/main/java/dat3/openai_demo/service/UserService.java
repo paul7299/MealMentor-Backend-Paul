@@ -63,7 +63,6 @@ public class UserService {
             }
             editUser.addAllergy(newAllergy);
         }
-        editUser.setSex(body.getSex());
         editUser.setActivityLevel(body.getActivityLevel());
 
         return new UserResponse(userRepository.save(editUser));
