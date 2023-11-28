@@ -29,8 +29,11 @@ public class MealMentorController {
       String usernamePrompting = userPromptResponse.getUsername();
       UserResponse user = userService.getUser(usernamePrompting);
 
+      userService.removeOneCreditFromUser(usernamePrompting);
+
+
       System.out.println("****** " + user.getUsername() + " is PROMPTING *******\n" +
-              "****** and he/she has got " + user.getCredits() + " credits left *****");
+              "****** and he/she has got " + userService.getUser(usernamePrompting).getCredits() + " credits left *****");
 
       String userPrompt = "I am a " + userPromptResponse.getUserAge() + " old "
               + userPromptResponse.getSex() +

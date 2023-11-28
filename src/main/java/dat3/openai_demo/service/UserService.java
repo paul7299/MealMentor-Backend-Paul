@@ -68,4 +68,19 @@ public class UserService {
 
         return new UserResponse(userRepository.save(editUser));
     }
+
+    public void removeOneCreditFromUser(String username){
+
+        System.out.println("Repo BEFORE, credits: " + userRepository.findByUsername(username).getCredits());
+
+        User editUser = userRepository.findById(username).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found"));
+
+        editUser.setCredits(editUser.getCredits() - 1);
+        userRepository.save(editUser);
+
+        System.out.println("Repo AFTER, credits: " + userRepository.findByUsername(username).getCredits());
+
+    }
+
 }
