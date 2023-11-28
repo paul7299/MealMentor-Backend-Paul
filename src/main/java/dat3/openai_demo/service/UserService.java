@@ -64,6 +64,7 @@ public class UserService {
             editUser.addAllergy(newAllergy);
         }
         editUser.setActivityLevel(body.getActivityLevel());
+        editUser.setGoals(body.getGoals());
 
         return new UserResponse(userRepository.save(editUser));
     }
