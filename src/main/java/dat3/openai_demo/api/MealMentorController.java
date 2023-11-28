@@ -35,11 +35,11 @@ public class MealMentorController {
       System.out.println("****** " + user.getUsername() + " is PROMPTING *******\n" +
               "****** and he/she has got " + userService.getUser(usernamePrompting).getCredits() + " credits left *****");
 
-      String userPrompt = "I am a " + userPromptResponse.getUserAge() + " old "
-              + userPromptResponse.getSex() +
-              "and " + "i workout" + userPromptResponse.getWorkoutsPerWeek() + "times a week " +
-              "The recipes should include" + userPromptResponse.getMealChecklist() + "and must not include " + userPromptResponse.getPreferences()
-              + ". My goals are" + userPromptResponse.getGoals()
+      String userPrompt = "I am a " + user.getAge() + " old "
+              + user.getSex() +
+              "and " + "i workout" + user.getActivityLevel() + "times a week " +
+              "The recipes should include" + userPromptResponse.getMealChecklist() + "and must not include " + user.getAllergies()
+              + ". My goals are" + user.getGoals()
 
                + " i want the recipe made for " /* + userPromptResponse.getAmountOfDays() + "number of days" */ ;
 
