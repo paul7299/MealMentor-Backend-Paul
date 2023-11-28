@@ -60,8 +60,8 @@ public class UserService {
             Allergy newAllergy = allergyRepository.findByName(allergy.getName());
             if(newAllergy == null){
                 newAllergy = allergyRepository.save(allergy);
+                editUser.addAllergy(newAllergy);
             }
-            editUser.addAllergy(newAllergy);
         }
         editUser.setActivityLevel(body.getActivityLevel());
         editUser.setGoals(body.getGoals());
