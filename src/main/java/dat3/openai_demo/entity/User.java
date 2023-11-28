@@ -21,6 +21,7 @@ public class User extends UserWithRoles {
     int weight;
     int height;
     int age;
+    int credits;
     @ManyToMany
     @JoinTable(
             name = "user_allergy", // Navnet på join-tabellen
@@ -36,13 +37,15 @@ public class User extends UserWithRoles {
 
 
     public User(String username, String password, String email,
-                int weight, int height, int age, List<Allergy> allergies, String sex,
+                int weight, int height, int age, int credits,
+                List<Allergy> allergies, String sex,
                 String activityLevel, String goals) {
 
         super(username, password, email);
         this.weight = weight;
         this.height = height;
         this.age = age;
+        this.credits = credits;
         this.allergies = allergies;
         this.sex = sex;
         this.activityLevel = activityLevel;

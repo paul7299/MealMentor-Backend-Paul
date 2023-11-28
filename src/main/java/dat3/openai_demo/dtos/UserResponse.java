@@ -16,6 +16,7 @@ public class UserResponse {
     int weight;
     int height;
     int age;
+    int credits;
     List<Allergy> allergies;
     String sex;
     String activityLevel;
@@ -26,6 +27,7 @@ public class UserResponse {
         this.weight = user.getWeight();
         this.height = user.getHeight();
         this.age = user.getAge();
+        this.credits = user.getCredits();
         this.allergies = user.getAllergies();
         this.sex = user.getSex();
         this.activityLevel = user.getActivityLevel();
