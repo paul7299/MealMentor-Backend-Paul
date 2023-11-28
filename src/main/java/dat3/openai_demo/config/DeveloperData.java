@@ -60,10 +60,10 @@ public class DeveloperData implements ApplicationRunner {
         allergies2.add(peanutAllergy);
         allergies2.add(fishAllergy);
 
-        User user1 = new User("testuser1", passwordUsedByAll, "testuser1@test.dk", 30,
+        User user1 = new User("testuser1", passwordUsedByAll, "testuser1@test.dk", 80,
                 80, 180, 25, allergies, "Male", "Moderate", "Gain muscle");
-        User user2 = new User("testuser2", passwordUsedByAll, "testuser2@test.dk", 20,
-                50, 200, 20, allergies2, "Male", "No excercise", "Lose weight");
+        User user2 = new User("testuser2", passwordUsedByAll, "testuser2@test.dk", 90,
+                50, 200, 0, allergies2, "Male", "No excercise", "Lose weight");
 
         userRepository.saveAll(Arrays.asList(user1, user2));
 
