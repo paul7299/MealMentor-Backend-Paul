@@ -12,7 +12,8 @@ import java.util.ArrayList;
 @Builder
 public class UserPromptResponse {
 
-
+    @JsonProperty("username")
+    String username;
     @JsonProperty("age")
     int userAge;
     @JsonProperty("weight")
