@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/mealPlanGenerator")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class MealMentorController {
 
   private OpenAiService service;
