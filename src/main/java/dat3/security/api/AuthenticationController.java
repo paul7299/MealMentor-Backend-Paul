@@ -24,7 +24,7 @@ import static java.util.stream.Collectors.joining;
 
 @RestController
 @RequestMapping("/api/auth/")
-@CrossOrigin(origins = {"https://thankful-wave-06d406403.4.azurestaticapps.net", "http://127.0.0.1:5500"})
+@CrossOrigin
 public class AuthenticationController {
 
   @Value("${app.token-issuer}")

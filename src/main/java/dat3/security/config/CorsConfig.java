@@ -24,10 +24,7 @@ public class CorsConfig {
         configuration.setAllowedHeaders(Arrays.asList("*"));
         //Use the line below instead, if you want to allow specific headers only
         //configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept", "X-Requested-With"));
-        configuration.setAllowedOriginPatterns(Arrays.asList(
-                "https://thankful-wave-06d406403.4.azurestaticapps.net",
-                "http://127.0.0.1:5500"
-        ));
+        configuration.setAllowedOriginPatterns(Arrays.asList(ALLOWED_ORIGINS));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
