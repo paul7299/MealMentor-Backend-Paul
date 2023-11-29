@@ -6,7 +6,12 @@ import dat3.openai_demo.dtos.UserResponse;
 import dat3.openai_demo.entity.User;
 import dat3.openai_demo.service.OpenAiService;
 import dat3.openai_demo.service.UserService;
+import dat3.security.service.UserDetailsServiceImp;
+import io.netty.handler.codec.http.HttpResponseStatus;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/mealPlanGenerator")
@@ -27,6 +32,10 @@ public class MealMentorController {
     @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
 
+      if (userPromptResponse.getGoals().equalsIgnoreCase("errortest")){
+          throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                  "** ERROR TEST **");
+      }
             // Check if the user has credits
         if (userService.getUser(userPromptResponse.getUsername()).getCredits() <= 0) {
 
