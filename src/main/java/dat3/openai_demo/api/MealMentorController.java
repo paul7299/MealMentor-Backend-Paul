@@ -23,14 +23,29 @@ public class MealMentorController {
   }
 
 
-  @PostMapping()
+
+    @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
 
+            // Check if the user has credits
+        if (userService.getUser(userPromptResponse.getUsername()).getCredits() <= 0) {
 
-      String usernamePrompting = userPromptResponse.getUsername();
-      UserResponse user = userService.getUser(usernamePrompting);
-      System.out.println("****** " + user.getUsername() + " is PROMPTING *******\n" +
-              "****** and he/she has got " + user.getCredits() + " credits left *****");
+            return new MyResponse("{\n" +
+                    "    \"Message\": \"USER HAS NO CREDITS\"\n" +
+                    "}");
+
+        } else {
+
+            // Removing one credit from the user's credits
+            String usernamePrompting = userPromptResponse.getUsername();
+            UserResponse user = userService.getUser(usernamePrompting);
+            userService.removeOneCreditFromUser(usernamePrompting);
+
+            // Printing how many cr
+            System.out.println("****** " + user.getUsername() + " is PROMPTING *******\n" +
+                    "****** and he/she has got " +
+                    userService.getUser(usernamePrompting).getCredits()
+                    + " credits left *****");
 
       String userPrompt = "I am a " + user.getAge() + " old "
               + user.getSex()
@@ -39,7 +54,10 @@ public class MealMentorController {
               + ". My goals are: " + user.getGoals()
               /*+ " i want the recipe made for "  + userPromptResponse.getAmountOfDays() + "number of days" */ ;
 
-      return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
+            return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
+        }
+
+
 
   }
 
