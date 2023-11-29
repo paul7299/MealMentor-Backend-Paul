@@ -85,16 +85,14 @@ public class MealMentorController {
               +
               "Be sure to mention that the dish do not contain what the user is allergic to."
               +
-              "mealType is Breakfast, Lunch or Dinner"
+              "mealType is Breakfast, Lunch or Dinner, and is written with capital starting letter"
               +
               "......"
               +
               "BELOW IS AN EXAMPLE OF YOU SHOULD STRUCTURE THE RECIPE, AND NOT SOMETHING YOU SHOULD RETURN:"
-              +
-              "{"
-              + "\"Day 1\": ["
+              + "{"
+              + "\"mealType"
               + "  {"
-              + "    \"Type of Meal\": \"type of meal\","
               + "    \"Title\": \"title of meal\","
               + "    \"Ingredients\": ["
               + "      \"50 g xxx\","
@@ -111,7 +109,6 @@ public class MealMentorController {
               + "    \"Description\": \"This xxx is xxx.\","
               + "    \"Instructions\": \"1. xxx 2. xxx 3. xxx. 4. xxx. 5. xxx. 6. Serve.\""
               + "  }"
-              + "]"
               + "}"
               +
 
