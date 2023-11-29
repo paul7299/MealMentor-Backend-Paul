@@ -57,12 +57,11 @@ public class MealMentorController {
                     + " credits left *****");
 
       String userPrompt = "I am a " + user.getAge() + " old "
-              + user.getSex() +
-              "and " + "i workout" + user.getActivityLevel() + "times a week " +
-              "The recipes should include" + userPromptResponse.getMealChecklist() + "and must not include " + user.getAllergies()
-              + ". My goals are" + user.getGoals()
-
-                    + " i want the recipe made for " /* + userPromptResponse.getAmountOfDays() + "number of days" */ ;
+              + user.getSex()
+              + " and" + " my activity level is: " + user.getActivityLevel()
+              + ". The mealplan must not include: " + user.getAllergies()
+              + ". My goals are: " + user.getGoals()
+              /*+ " i want the recipe made for "  + userPromptResponse.getAmountOfDays() + "number of days" */ ;
 
             return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
         }
@@ -86,31 +85,31 @@ public class MealMentorController {
               +
               "Be sure to mention that the dish do not contain what the user is allergic to."
               +
-              "mealType is breakfast, lunch or dinner"
+              "mealType is Breakfast, Lunch or Dinner"
               +
               "......"
+              +
+              "BELOW IS AN EXAMPLE OF YOU SHOULD STRUCTURE THE RECIPE, AND NOT SOMETHING YOU SHOULD RETURN:"
               +
               "{"
               + "\"Day 1\": ["
               + "  {"
-              + "    \"Type of Meal\": \"Breakfast\","
-              + "    \"Title\": \"Protein-Packed Omelette\","
+              + "    \"Type of Meal\": \"type of meal\","
+              + "    \"Title\": \"title of meal\","
               + "    \"Ingredients\": ["
-              + "      \"3 eggs\","
-              + "      \"100g lean turkey breast, diced\","
-              + "      \"50g spinach\","
-              + "      \"30g low-fat cheese, grated\","
-              + "      \"1/2 red bell pepper, diced\","
-              + "      \"1/4 onion, diced\","
-              + "      \"Salt and pepper to taste\""
+              + "      \"50 g xxx\","
+              + "      \"150 g xxx\","
+              + "      \"1 cup xxx\","
+              + "      \"1/2  xxx\","
+              + "      \"xxx and xxx to taste\""
               + "    ],"
-              + "    \"Calories\": \"450kcal\","
-              + "    \"Protein\": \"40g\","
-              + "    \"Carbohydrates\": \"10g\","
-              + "    \"Fat\": \"25g\","
-              + "    \"Time to make\": \"30 min\","
-              + "    \"Description\": \"This omelette is packed with protein from the eggs and lean turkey breast. It also contains spinach, which is rich in vitamins and minerals. The low-fat cheese adds a creamy texture without adding excessive calories. This meal is great for weight loss as it provides a satisfying amount of protein to support muscle growth and repair while keeping the calorie count moderate.\","
-              + "    \"Instructions\": \"1. In a bowl, whisk the eggs with salt and pepper. 2. Heat a non-stick pan over medium heat and add the diced turkey breast, onion, and bell pepper. Cook until the turkey is browned and the vegetables are softened. 3. Add the spinach to the pan and cook until wilted. 4. Pour the whisked eggs over the turkey and vegetables. Cook until the eggs are set. 5. Sprinkle the grated low-fat cheese over the omelette. 6. Carefully fold the omelette in half and cook for another minute to melt the cheese. 7. Serve hot.\""
+              + "    \"Calories\": \"xxx kcal\","
+              + "    \"Protein\": \"xxx g\","
+              + "    \"Carbohydrates\": \"xxx g\","
+              + "    \"Fat\": \"xxx g\","
+              + "    \"Time to make\": \"xxx min\","
+              + "    \"Description\": \"This xxx is xxx.\","
+              + "    \"Instructions\": \"1. xxx 2. xxx 3. xxx. 4. xxx. 5. xxx. 6. Serve.\""
               + "  }"
               + "]"
               + "}"
