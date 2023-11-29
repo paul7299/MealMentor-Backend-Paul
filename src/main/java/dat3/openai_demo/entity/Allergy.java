@@ -22,9 +22,15 @@ public class Allergy {
     @JsonIgnoreProperties("allergies")
     List<User> users;
 
+    @Override
+    public String toString() {
+        return name ;
+    }
+
     public Allergy(String name) {
         this.name = name;
     }
+
 }
 
 

@@ -26,19 +26,18 @@ public class MealMentorController {
   @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
 
+
       String usernamePrompting = userPromptResponse.getUsername();
       UserResponse user = userService.getUser(usernamePrompting);
-
       System.out.println("****** " + user.getUsername() + " is PROMPTING *******\n" +
               "****** and he/she has got " + user.getCredits() + " credits left *****");
 
-      String userPrompt = "I am a " + userPromptResponse.getUserAge() + " old "
-              + userPromptResponse.getSex() +
-              "and " + "i workout" + userPromptResponse.getWorkoutsPerWeek() + "times a week " +
-              "The recipes should include" + userPromptResponse.getMealChecklist() + "and must not include " + userPromptResponse.getPreferences()
-              + ". My goals are" + userPromptResponse.getGoals()
-
-               + " i want the recipe made for " /* + userPromptResponse.getAmountOfDays() + "number of days" */ ;
+      String userPrompt = "I am a " + user.getAge() + " old "
+              + user.getSex()
+              + " and" + " my activity level is: " + user.getActivityLevel()
+              + " The mealplan must not include: " + user.getAllergies()
+              + ". My goals are: " + user.getGoals()
+              /*+ " i want the recipe made for "  + userPromptResponse.getAmountOfDays() + "number of days" */ ;
 
       return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
 
@@ -62,6 +61,8 @@ public class MealMentorController {
               "mealType is breakfast, lunch or dinner"
               +
               "......"
+              +
+              "THIS IS AN EXAMPLE OF YOU SHOULS STRUCTURE THE RECIPE, AND NOT SOMETHING YOU SHOULD RETURN:"
               +
               "{"
               + "\"Day 1\": ["
