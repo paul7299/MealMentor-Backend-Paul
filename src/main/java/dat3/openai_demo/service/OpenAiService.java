@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dat3.openai_demo.dtos.ChatCompletionRequest;
 import dat3.openai_demo.dtos.ChatCompletionResponse;
 import dat3.openai_demo.dtos.MyResponse;
+import dat3.openai_demo.dtos.UserPromptResponse;
+import dat3.openai_demo.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -113,5 +115,33 @@ public class OpenAiService {
               "( While you develop, make sure to consult the detailed error message on your backend)";
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, err);
     }
+  }
+
+  public String generateUserPrompt(User user, UserPromptResponse userPromptResponse){
+    String baseUserPrompt = "I am a " + user.getAge() + " old "
+            + user.getSex()
+            + " and" + " my activity level is: " + user.getActivityLevel()
+            + ". My goals are: " + user.getGoals();
+
+    String userPromptNoAllergies = baseUserPrompt
+            + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
+
+    String userPromptNoPreferences = baseUserPrompt
+            + ". The mealplan must not include: " + user.getAllergies();
+
+    String userPromptAll = baseUserPrompt
+            + ". The mealplan must not include: " + user.getAllergies()
+            + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
+
+    if (userPromptResponse.getPreferences().isEmpty() && user.getAllergies().isEmpty()) {
+      return baseUserPrompt;
+    } else if (userPromptResponse.getPreferences().isEmpty()) {
+      return userPromptNoPreferences;
+    } else if (user.getAllergies().isEmpty()) {
+      return userPromptNoAllergies;
+    }
+
+    return userPromptAll;
+
   }
 }
