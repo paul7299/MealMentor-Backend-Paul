@@ -117,7 +117,7 @@ public class OpenAiService {
     String baseUserPrompt = "I am a " + user.getAge() + " old "
             + user.getSex()
             + " and" + " my activity level is: " + user.getActivityLevel()
-            + ". My goals are: " + user.getGoals();
+            + ". My goals are: " + user.getGoals() + "The following mealplan should include" + userPromptResponse.getMealChecklist();
 
     String userPromptNoAllergies = baseUserPrompt
             + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
