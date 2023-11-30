@@ -31,11 +31,14 @@ public class MealMentorController {
 
     @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
+       /* try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Error during delay");
+        } */
 
-      if (userPromptResponse.getGoals().equalsIgnoreCase("errortest")){
-          throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                  "** ERROR TEST **");
-      }
             // Check if the user has credits
         if (userService.getUser(userPromptResponse.getUsername()).getCredits() <= 0) {
 
@@ -61,7 +64,7 @@ public class MealMentorController {
               + " and" + " my activity level is: " + user.getActivityLevel()
               + ". The mealplan must not include: " + user.getAllergies()
               + ". My goals are: " + user.getGoals() + "i want the mealplan to only include" + userPromptResponse.getMealChecklist();
-              /*+ " i want the recipe made for "  + userPromptResponse.getAmountOfDays() + "number of days" */ ;
+
 
             return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
         }
