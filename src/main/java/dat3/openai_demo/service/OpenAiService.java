@@ -1,11 +1,7 @@
 package dat3.openai_demo.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dat3.openai_demo.dtos.ChatCompletionRequest;
-import dat3.openai_demo.dtos.ChatCompletionResponse;
-import dat3.openai_demo.dtos.MyResponse;
-import dat3.openai_demo.dtos.UserPromptResponse;
-import dat3.openai_demo.entity.User;
+import dat3.openai_demo.dtos.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -117,7 +113,7 @@ public class OpenAiService {
     }
   }
 
-  public String generateUserPrompt(User user, UserPromptResponse userPromptResponse){
+  public String generateUserPrompt(UserResponse user, UserPromptResponse userPromptResponse){
     String baseUserPrompt = "I am a " + user.getAge() + " old "
             + user.getSex()
             + " and" + " my activity level is: " + user.getActivityLevel()
@@ -142,6 +138,5 @@ public class OpenAiService {
     }
 
     return userPromptAll;
-
   }
 }

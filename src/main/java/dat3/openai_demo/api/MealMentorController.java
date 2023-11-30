@@ -60,45 +60,8 @@ public class MealMentorController {
                         "User has not filled in all the required information");
             }
 
-            String userPromptNoAllergies = "I am a " + user.getAge() + " old "
-                    + user.getSex()
-                    + " and" + " my activity level is: " + user.getActivityLevel()
-                    + ". My goals are: " + user.getGoals()
-                    + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
-
-            String userPromptNoPreferences = "I am a " + user.getAge() + " old "
-                    + user.getSex()
-                    + " and" + " my activity level is: " + user.getActivityLevel()
-                    + ". The mealplan must not include: " + user.getAllergies()
-                    + ". My goals are: " + user.getGoals();
-
-            String userPromptNoAllergiesNoPreferences = "I am a " + user.getAge() + " old "
-                    + user.getSex()
-                    + " and" + " my activity level is: " + user.getActivityLevel()
-                    + ". My goals are: " + user.getGoals();
-
-            String userPromptAll = "I am a " + user.getAge() + " old "
-                  + user.getSex()
-                  + " and" + " my activity level is: " + user.getActivityLevel()
-                  + ". The mealplan must not include: " + user.getAllergies()
-                  + ". My goals are: " + user.getGoals()
-                  + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
-
-            if (userPromptResponse.getPreferences().isEmpty() && user.getAllergies().isEmpty()) {
-                return openAiService.makeRequest(userPromptNoAllergiesNoPreferences, SYSTEM_MESSAGE);
-            }
-            else if (userPromptResponse.getPreferences().isEmpty()) {
-                return openAiService.makeRequest(userPromptNoPreferences, SYSTEM_MESSAGE);
-            }
-            else if (user.getAllergies().isEmpty()) {
-                return openAiService.makeRequest(userPromptNoAllergies, SYSTEM_MESSAGE);
-            }
-
-            return openAiService.makeRequest(userPromptAll, SYSTEM_MESSAGE);
+            return openAiService.makeRequest(openAiService.generateUserPrompt(user, userPromptResponse), SYSTEM_MESSAGE);
         }
-
-
-
   }
 
   private String getSystemMessage() {
