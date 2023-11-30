@@ -32,10 +32,7 @@ public class MealMentorController {
     @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
 
-      if (userPromptResponse.getGoals().equalsIgnoreCase("errortest")){
-          throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                  "** ERROR TEST **");
-      }
+
             // Check if the user has credits
         if (userService.getUser(userPromptResponse.getUsername()).getCredits() <= 0) {
 
