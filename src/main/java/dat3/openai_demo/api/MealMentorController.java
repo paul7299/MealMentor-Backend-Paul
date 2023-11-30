@@ -60,7 +60,7 @@ public class MealMentorController {
               + user.getSex()
               + " and" + " my activity level is: " + user.getActivityLevel()
               + ". The mealplan must not include: " + user.getAllergies()
-              + ". My goals are: " + user.getGoals()
+              + ". My goals are: " + user.getGoals() + "i want the mealplan to only include" + userPromptResponse.getMealChecklist();
               /*+ " i want the recipe made for "  + userPromptResponse.getAmountOfDays() + "number of days" */ ;
 
             return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
