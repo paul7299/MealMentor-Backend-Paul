@@ -28,16 +28,9 @@ public class MealMentorController {
   }
 
 
-
     @PostMapping()
       public MyResponse generatePrompt(@RequestBody UserPromptResponse userPromptResponse){
-       /* try {
-            Thread.sleep(15000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Error during delay");
-        } */
+
 
             // Check if the user has credits
         if (userService.getUser(userPromptResponse.getUsername()).getCredits() <= 0) {
@@ -59,18 +52,13 @@ public class MealMentorController {
                     userService.getUser(usernamePrompting).getCredits()
                     + " credits left *****");
 
-      String userPrompt = "I am a " + user.getAge() + " old "
-              + user.getSex()
-              + " and" + " my activity level is: " + user.getActivityLevel()
-              + ". The mealplan must not include: " + user.getAllergies()
-              + ". My goals are: " + user.getGoals() + "i want the mealplan to only include" + userPromptResponse.getMealChecklist();
+            if (user.getWeight() == 0 || user.getHeight() == 0 || user.getAge() == 0 || user.getActivityLevel() == null){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "User has not filled in all the required information");
+            }
 
-
-            return openAiService.makeRequest(userPrompt, SYSTEM_MESSAGE);
+            return openAiService.makeRequest(openAiService.generateUserPrompt(user, userPromptResponse), SYSTEM_MESSAGE);
         }
-
-
-
   }
 
   private String getSystemMessage() {
