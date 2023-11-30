@@ -113,30 +113,38 @@ public class OpenAiService {
     }
   }
 
-  public String generateUserPrompt(UserResponse user, UserPromptResponse userPromptResponse){
-    String baseUserPrompt = "I am a " + user.getAge() + " old "
-            + user.getSex()
-            + " and" + " my activity level is: " + user.getActivityLevel()
-            + ". My goals are: " + user.getGoals() + "The following mealplan should include" + userPromptResponse.getMealChecklist();
+  public String generateUserPrompt(UserResponse user, UserPromptResponse userPromptResponse) {
+    try {
+      Thread.sleep(15000);
 
-    String userPromptNoAllergies = baseUserPrompt
-            + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
+      String baseUserPrompt = "I am a " + user.getAge() + " old "
+              + user.getSex()
+              + " and" + " my activity level is: " + user.getActivityLevel()
+              + ". My goals are: " + user.getGoals() + "The following mealplan should include" + userPromptResponse.getMealChecklist();
 
-    String userPromptNoPreferences = baseUserPrompt
-            + ". The mealplan must not include: " + user.getAllergies();
+      String userPromptNoAllergies = baseUserPrompt
+              + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
 
-    String userPromptAll = baseUserPrompt
-            + ". The mealplan must not include: " + user.getAllergies()
-            + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
+      String userPromptNoPreferences = baseUserPrompt
+              + ". The mealplan must not include: " + user.getAllergies();
 
-    if (userPromptResponse.getPreferences().isEmpty() && user.getAllergies().isEmpty()) {
-      return baseUserPrompt;
-    } else if (userPromptResponse.getPreferences().isEmpty()) {
-      return userPromptNoPreferences;
-    } else if (user.getAllergies().isEmpty()) {
-      return userPromptNoAllergies;
+      String userPromptAll = baseUserPrompt
+              + ". The mealplan must not include: " + user.getAllergies()
+              + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
+
+      if (userPromptResponse.getPreferences().isEmpty() && user.getAllergies().isEmpty()) {
+        return baseUserPrompt;
+      } else if (userPromptResponse.getPreferences().isEmpty()) {
+        return userPromptNoPreferences;
+      } else if (user.getAllergies().isEmpty()) {
+        return userPromptNoAllergies;
+      }
+
+      return userPromptAll;
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+              "Error during delay");
     }
-
-    return userPromptAll;
   }
 }
