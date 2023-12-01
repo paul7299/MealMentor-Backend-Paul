@@ -49,6 +49,7 @@ public class OpenAiService {
   public OpenAiService() {
     this.client = WebClient.create();
   }
+
   //Use this constructor for testing, to inject a mock client
   public OpenAiService(WebClient client) {
     this.client = client;
@@ -68,7 +69,7 @@ public class OpenAiService {
 
     ObjectMapper mapper = new ObjectMapper();
     String json = "";
-    String err =  null;
+    String err = null;
     try {
       json = mapper.writeValueAsString(requestDto);
       System.out.println(json);
@@ -85,18 +86,17 @@ public class OpenAiService {
       int tokensUsed = response.getUsage().getTotal_tokens();
       int promptTokens = response.getUsage().getPrompt_tokens();
       System.out.println("Tokens used: " + tokensUsed);
-      System.out.print(". Cost ($0.002 / 1K tokens) : $" + String.format("%6f",(tokensUsed * 0.002 / 1000)));
-      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1/(tokensUsed * 0.002 / 1000)));
+      System.out.print(". Cost ($0.002 / 1K tokens) : $" + String.format("%6f", (tokensUsed * 0.002 / 1000)));
+      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1 / (tokensUsed * 0.002 / 1000)));
 
       System.out.println("Prompt tokens used: " + promptTokens);
-      System.out.print(". Cost ($0.001 / 1K tokens) : $" + String.format("%6f",(promptTokens * 0.001 / 1000)));
-      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1/(promptTokens * 0.001 / 1000)));
+      System.out.print(". Cost ($0.001 / 1K tokens) : $" + String.format("%6f", (promptTokens * 0.001 / 1000)));
+      System.out.println(". For 1$, this is the amount of similar requests you can make: " + Math.round(1 / (promptTokens * 0.001 / 1000)));
 
-      System.out.println("For 1$, you can make a total of: " + Math.round(1/((promptTokens* 0.001/1000) + (tokensUsed * 0.002 / 1000))) + " prompts and responses");
+      System.out.println("For 1$, you can make a total of: " + Math.round(1 / ((promptTokens * 0.001 / 1000) + (tokensUsed * 0.002 / 1000))) + " prompts and responses");
 
       return new MyResponse(responseMsg);
-    }
-    catch (WebClientResponseException e){
+    } catch (WebClientResponseException e) {
       //This is how you can get the status code and message reported back by the remote API
       logger.error("Error response status code: " + e.getRawStatusCode());
       logger.error("Error response body: " + e.getResponseBodyAsString());
@@ -104,8 +104,7 @@ public class OpenAiService {
       err = "Internal Server Error, due to a failed request to external service. You could try again" +
               "( While you develop, make sure to consult the detailed error message on your backend)";
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, err);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       logger.error("Exception", e);
       err = "Internal Server Error - You could try again" +
               "( While you develop, make sure to consult the detailed error message on your backend)";
@@ -114,37 +113,28 @@ public class OpenAiService {
   }
 
   public String generateUserPrompt(UserResponse user, UserPromptResponse userPromptResponse) {
-    try {
-      Thread.sleep(15000);
+    String baseUserPrompt = "I am a " + user.getAge() + " old "
+            + user.getSex()
+            + " and" + " my activity level is: " + user.getActivityLevel()
+            + ". My goals are: " + user.getGoals() + "The following mealplan should include" + userPromptResponse.getMealChecklist();
 
-      String baseUserPrompt = "I am a " + user.getAge() + " old "
-              + user.getSex()
-              + " and" + " my activity level is: " + user.getActivityLevel()
-              + ". My goals are: " + user.getGoals() + "The following mealplan should include" + userPromptResponse.getMealChecklist();
+    String userPromptNoAllergies = baseUserPrompt
+            + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
 
-      String userPromptNoAllergies = baseUserPrompt
-              + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
+    String userPromptNoPreferences = baseUserPrompt
+            + ". The mealplan must not include: " + user.getAllergies();
 
-      String userPromptNoPreferences = baseUserPrompt
-              + ". The mealplan must not include: " + user.getAllergies();
+    String userPromptAll = baseUserPrompt
+            + ". The mealplan must not include: " + user.getAllergies()
+            + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
 
-      String userPromptAll = baseUserPrompt
-              + ". The mealplan must not include: " + user.getAllergies()
-              + ". I would prefer if some of the meals included: " + userPromptResponse.getPreferences();
-
-      if (userPromptResponse.getPreferences().isEmpty() && user.getAllergies().isEmpty()) {
-        return baseUserPrompt;
-      } else if (userPromptResponse.getPreferences().isEmpty()) {
-        return userPromptNoPreferences;
-      } else if (user.getAllergies().isEmpty()) {
-        return userPromptNoAllergies;
-      }
-
-      return userPromptAll;
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-              "Error during delay");
+    if (userPromptResponse.getPreferences().isEmpty() && user.getAllergies().isEmpty()) {
+      return baseUserPrompt;
+    } else if (userPromptResponse.getPreferences().isEmpty()) {
+      return userPromptNoPreferences;
+    } else if (user.getAllergies().isEmpty()) {
+      return userPromptNoAllergies;
     }
+    return userPromptAll;
   }
 }
