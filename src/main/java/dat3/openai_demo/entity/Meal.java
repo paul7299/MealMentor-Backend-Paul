@@ -17,16 +17,21 @@ import java.util.List;
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="meal_id", unique = true, nullable = false)
+    @Column(name = "meal_id", unique = true, nullable = false)
     private int id;
 
-    String mealType;
-    String title;
-    String instructions;
-    int calories;
-    int carbs;
-    int fat;
-    int protein;
+    private String mealType;
+    private String title;
+    private String instructions;
+    private String description;
+    private int calories;
+    private int carbs;
+    private int fat;
+    private int protein;
+    @ManyToOne
+    @JoinColumn(name = "meal_user", nullable = true)
+    private User user;
+    private String timeToMake;
 
     @ManyToMany
     @JoinTable(
@@ -34,7 +39,8 @@ public class Meal {
             joinColumns = @JoinColumn(name = "meal_id"), // Kolonnen i join-tabellen, der refererer til `Meal id`
             inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Kolonnen i join-tabellen, der refererer til `Ingredient`
     )
-    List<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
+
 
     public Meal(String mealType, String title, String instructions, int calories, int carbs, int fat, int protein) {
         this.mealType = mealType;

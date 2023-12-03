@@ -1,5 +1,6 @@
 package dat3.openai_demo.api;
 
+import dat3.openai_demo.dtos.SaveMealResponse;
 import dat3.openai_demo.entity.Meal;
 import dat3.openai_demo.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,11 @@ public class MealController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving meal.");
         }
+    }
+
+    @PostMapping("/saveToUser")
+    public void saveMealToUser(@RequestBody SaveMealResponse mealToSave){
+        mealService.saveMealToUser(mealToSave);
+
     }
 }
