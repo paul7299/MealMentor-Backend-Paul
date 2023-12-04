@@ -35,7 +35,7 @@ public class User extends UserWithRoles {
     String activityLevel;
     String goals;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Meal> savedMeals;
 
     public User(String username, String password, String email,

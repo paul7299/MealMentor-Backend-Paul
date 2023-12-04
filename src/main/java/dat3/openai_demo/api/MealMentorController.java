@@ -124,7 +124,7 @@ public class MealMentorController {
       /* DONT TOUCH THIS */
 
         String jsonData = "[\n" +
-                "  {\n" +
+        "  {\n" +
                 "    \"MealType\": \"Breakfast\",\n" +
                 "    \"Title\": \"Protein-Packed Omelette\",\n" +
                 "    \"Ingredients\": [\n" +
@@ -197,6 +197,7 @@ public class MealMentorController {
                 "    \"Instructions\": \"1. In a bowl, add the Greek yogurt. \\n2. Top the yogurt with mixed berries and chopped almonds. \\n3. Serve chilled.\"\n" +
                 "  }\n" +
                 "]";
+        ;
 
 
 

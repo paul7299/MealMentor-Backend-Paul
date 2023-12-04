@@ -30,8 +30,13 @@ public class MealController {
     }
 
     @PostMapping("/saveToUser")
-    public void saveMealToUser(@RequestBody SaveMealResponse mealToSave){
-        mealService.saveMealToUser(mealToSave);
+    public ResponseEntity<String> saveMealToUser(@RequestBody SaveMealResponse mealToSave){
+        try {
+            mealService.saveMealToUser(mealToSave);
 
+            return ResponseEntity.ok("Meal saved to user successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving meal to user.");
+        }
     }
 }

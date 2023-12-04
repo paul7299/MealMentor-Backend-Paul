@@ -38,7 +38,7 @@ public class DeveloperData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         setupUsers();
-        setupTestMeals();
+     //   setupTestMeals();
     }
 
     private void setupUsers() {

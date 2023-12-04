@@ -18,6 +18,7 @@ public class SaveMealResponse {
     private String mealType;
     private String title;
     private String instructions;
+    private ArrayList<String> ingredients;
     private int calories;
     private int carbohydrates;
     private int fat;
