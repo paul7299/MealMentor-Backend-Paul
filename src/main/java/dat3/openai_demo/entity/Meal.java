@@ -45,4 +45,7 @@ public class Meal {
         this.fat = fat;
         this.protein = protein;
     }
+
+
+
 }
