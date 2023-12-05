@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -17,24 +18,31 @@ import java.util.List;
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="meal_id", unique = true, nullable = false)
+    @Column(name = "meal_id", unique = true, nullable = false)
     private int id;
 
-    String mealType;
-    String title;
-    String instructions;
-    int calories;
-    int carbs;
-    int fat;
-    int protein;
-
+    private String mealType;
+    private String title;
+    @Column(columnDefinition = "TEXT")
+    private String instructions;
+    @Column(columnDefinition = "TEXT")
+    private String description;
+    private int calories;
+    private int carbs;
+    private int fat;
+    private int protein;
+    private String timeToMake;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
     @ManyToMany
     @JoinTable(
             name = "meal_ingredient", // Navnet på join-tabellen
             joinColumns = @JoinColumn(name = "meal_id"), // Kolonnen i join-tabellen, der refererer til `Meal id`
             inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Kolonnen i join-tabellen, der refererer til `Ingredient`
     )
-    List<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
+
 
     public Meal(String mealType, String title, String instructions, int calories, int carbs, int fat, int protein) {
         this.mealType = mealType;
@@ -46,6 +54,10 @@ public class Meal {
         this.protein = protein;
     }
 
-
-
+    public void addIngredient(Ingredient i) {
+        if(this.ingredients == null){
+            this.ingredients = new ArrayList<>();
+        }
+         this.ingredients.add(i);
+    }
 }

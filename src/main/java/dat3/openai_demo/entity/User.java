@@ -35,6 +35,8 @@ public class User extends UserWithRoles {
     String activityLevel;
     String goals;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Meal> savedMeals;
 
     public User(String username, String password, String email,
                 int weight, int height, int age, int credits,
@@ -58,5 +60,15 @@ public class User extends UserWithRoles {
         }
         this.allergies.add(allergy);
     }
+
+    public void saveMeal(Meal meal){
+        if (this.savedMeals == null){
+            this.savedMeals = new ArrayList<>();
+        }
+        this.savedMeals.add(meal);
+        meal.setUser(this);
+    }
+
+
 }
 
