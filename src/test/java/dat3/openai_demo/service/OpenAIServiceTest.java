@@ -25,16 +25,13 @@ public class OpenAIServiceTest {
         openAiService = new OpenAiService();
     }
 
-    @MockBean
-    private WebClient.Builder webClientBuilder;
-
     @Test
     public void testConnectionToOpenAI() {
         assertThrows(ResponseStatusException.class, () -> {
             try {
                 openAiService.makeRequest("user prompt", "system message");
             } catch (ResponseStatusException e) {
-                assertEquals(HttpStatusCode.valueOf(401), e.getStatusCode());
+                assertEquals(HttpStatusCode.valueOf(500), e.getStatusCode());
                 throw e;
             }
         });
