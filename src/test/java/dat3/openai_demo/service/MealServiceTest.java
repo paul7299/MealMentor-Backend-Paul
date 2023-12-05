@@ -2,8 +2,10 @@ package dat3.openai_demo.service;
 
 import dat3.openai_demo.TestUtils;
 import dat3.openai_demo.entity.Meal;
+import dat3.openai_demo.entity.User;
 import dat3.openai_demo.repository.IngredientRepository;
 import dat3.openai_demo.repository.MealRepository;
+import dat3.openai_demo.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class MealServiceTest {
     @Autowired
     MealRepository mealRepository;
+    @Autowired
+    UserRepository userRepository;
     MealService mealService;
     @Autowired
     IngredientRepository ingredientRepository;
@@ -25,7 +29,7 @@ class MealServiceTest {
 
     @BeforeEach
     void setUp() {
-        mealService = new MealService(mealRepository);
+        mealService = new MealService(mealRepository, userRepository, ingredientRepository);
         if(!dataInitialized) {
             mealRepository.deleteAll();
             TestUtils.setupTestMeals(mealRepository, ingredientRepository);
