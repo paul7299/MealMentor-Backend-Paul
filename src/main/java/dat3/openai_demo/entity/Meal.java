@@ -32,9 +32,6 @@ public class Meal {
     private int fat;
     private int protein;
     private String timeToMake;
-    @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
-    private User user;
     @ManyToMany
     @JoinTable(
             name = "meal_ingredient", // Navnet på join-tabellen
@@ -42,7 +39,9 @@ public class Meal {
             inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Kolonnen i join-tabellen, der refererer til `Ingredient`
     )
     private List<Ingredient> ingredients;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
 
     public Meal(String mealType, String title, String instructions, int calories, int carbs, int fat, int protein) {
         this.mealType = mealType;
@@ -52,6 +51,18 @@ public class Meal {
         this.carbs = carbs;
         this.fat = fat;
         this.protein = protein;
+    }
+
+    public Meal(String mealType, String title, String instructions, String description, int calories, int carbs, int fat, int protein, String timeToMake) {
+        this.mealType = mealType;
+        this.title = title;
+        this.instructions = instructions;
+        this.description = description;
+        this.calories = calories;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.protein = protein;
+        this.timeToMake = timeToMake;
     }
 
     public void addIngredient(Ingredient i) {
