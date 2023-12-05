@@ -25,9 +25,6 @@ public class OpenAIServiceTest {
         openAiService = new OpenAiService();
     }
 
-    @MockBean
-    private WebClient.Builder webClientBuilder;
-
     @Test
     public void testMakeRequest() {
         assertThrows(ResponseStatusException.class, () -> {
