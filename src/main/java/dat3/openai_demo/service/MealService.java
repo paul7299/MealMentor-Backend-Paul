@@ -1,5 +1,6 @@
 package dat3.openai_demo.service;
 
+import dat3.openai_demo.dtos.MealResponse;
 import dat3.openai_demo.dtos.SaveMealResponse;
 import dat3.openai_demo.entity.Ingredient;
 import dat3.openai_demo.entity.Meal;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MealService {
@@ -70,5 +72,11 @@ public class MealService {
 
 
         }
+
     }
+    public List<MealResponse> getMeals(){
+        List<Meal> meals = mealRepository.findAll();
+        return meals.stream().map(MealResponse::new).collect(Collectors.toList());
+    }
+
 }
