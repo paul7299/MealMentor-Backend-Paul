@@ -97,13 +97,20 @@
 
         return new MyResponse(responseMsg);
       } catch (WebClientResponseException e) {
+        int statusCode = e.getRawStatusCode();
+        if (statusCode == HttpStatus.UNAUTHORIZED.value()) {
+          // 401 Unauthorized: Invalid API key or missing authentication
+          logger.error("Error: Unauthorized - Invalid API key or missing authentication");
+          err = "Unauthorized - Invalid API key or missing authentication";
+          throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, err); }
+        else {
         //This is how you can get the status code and message reported back by the remote API
         logger.error("Error response status code: " + e.getRawStatusCode());
         logger.error("Error response body: " + e.getResponseBodyAsString());
         logger.error("WebClientResponseException", e);
         err = "Internal Server Error, due to a failed request to external service. You could try again" +
                 "( While you develop, make sure to consult the detailed error message on your backend)";
-        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, err);
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, err); }
       } catch (Exception e) {
         logger.error("Exception", e);
         err = "Internal Server Error - You could try again" +

@@ -29,7 +29,7 @@ public class OpenAIServiceTest {
     private WebClient.Builder webClientBuilder;
 
     @Test
-    public void testMakeRequest() {
+    public void testConnectionToOpenAI() {
         assertThrows(ResponseStatusException.class, () -> {
             try {
                 openAiService.makeRequest("user prompt", "system message");
