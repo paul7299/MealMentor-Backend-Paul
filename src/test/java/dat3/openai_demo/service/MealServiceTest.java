@@ -1,6 +1,7 @@
 package dat3.openai_demo.service;
 
 import dat3.openai_demo.TestUtils;
+import dat3.openai_demo.dtos.MealResponse;
 import dat3.openai_demo.entity.Meal;
 import dat3.openai_demo.entity.User;
 import dat3.openai_demo.repository.IngredientRepository;
@@ -40,7 +41,7 @@ class MealServiceTest {
 
     @Test
     void getAllMeals() {
-        List<Meal> meals = mealService.getAllMeals();
+        List<MealResponse> meals = mealService.getMeals();
         assertEquals(2, meals.size());
     }
 

@@ -33,7 +33,7 @@ public class Meal {
     private int protein;
     private String timeToMake;
     @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToMany
     @JoinTable(
