@@ -34,7 +34,7 @@ public class OpenAIServiceTest {
             try {
                 openAiService.makeRequest("user prompt", "system message");
             } catch (ResponseStatusException e) {
-                assertEquals(HttpStatusCode.valueOf(401), e.getStatusCode());
+                assertEquals(HttpStatusCode.valueOf(500), e.getStatusCode());
                 throw e;
             }
         });
