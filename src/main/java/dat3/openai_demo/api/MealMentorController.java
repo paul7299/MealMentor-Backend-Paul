@@ -88,24 +88,45 @@ public class MealMentorController {
               "......"
               +
               "BELOW IS AN EXAMPLE OF YOU SHOULD STRUCTURE THE RECIPE, AND NOT SOMETHING YOU SHOULD RETURN:"
-              + "{"
-              + "    \"MealType\": \"type of meal\","
-              + "    \"Title\": \"title of meal\","
-              + "    \"Ingredients\": ["
-              + "      \"50 g xxx\","
-              + "      \"150 g xxx\","
-              + "      \"1 cup xxx\","
-              + "      \"1/2  xxx\","
-              + "      \"xxx and xxx to taste\""
-              + "    ],"
-              + "    \"Calories\": \"xxx kcal\","
-              + "    \"Protein\": \"xxx g\","
-              + "    \"Carbohydrates\": \"xxx g\","
-              + "    \"Fat\": \"xxx g\","
-              + "    \"Time to make\": \"xxx min\","
-              + "    \"Description\": \"This xxx is xxx.\","
-              + "    \"Instructions\": \"1. xxx 2. xxx 3. xxx. 4. xxx. 5. xxx. 6. Serve.\""
-              + "}"
+              + "{\n" +
+                      "  \"Meal1\": {\n" +
+                      "    \"MealType\": \"type of meal\",\n" +
+                      "    \"Title\": \"title of meal\",\n" +
+                      "    \"Ingredients\": [\n" +
+                      "      \"50 g xxx\",\n" +
+                      "      \"150 g xxx\",\n" +
+                      "      \"1 cup xxx\",\n" +
+                      "      \"1/2 xxx\",\n" +
+                      "      \"xxx and xxx to taste\"\n" +
+                      "    ],\n" +
+                      "    \"Calories\": \"xxx kcal\",\n" +
+                      "    \"Protein\": \"xxx g\",\n" +
+                      "    \"Carbohydrates\": \"xxx g\",\n" +
+                      "    \"Fat\": \"xxx g\",\n" +
+                      "    \"Time to make\": \"xxx min\",\n" +
+                      "    \"Description\": \"This xxx is xxx.\",\n" +
+                      "    \"Instructions\": \"1. xxx 2. xxx 3. xxx. 4. xxx. 5. xxx. 6. Serve.\"\n" +
+                      "  },\n" +
+                      "  \"Meal2\": {\n" +
+                      "    \"MealType\": \"type of meal\",\n" +
+                      "    \"Title\": \"title of meal\",\n" +
+                      "    \"Ingredients\": [\n" +
+                      "      \"50 g xxx\",\n" +
+                      "      \"150 g xxx\",\n" +
+                      "      \"1 cup xxx\",\n" +
+                      "      \"1/2 xxx\",\n" +
+                      "      \"xxx and xxx to taste\"\n" +
+                      "    ],\n" +
+                      "    \"Calories\": \"xxx kcal\",\n" +
+                      "    \"Protein\": \"xxx g\",\n" +
+                      "    \"Carbohydrates\": \"xxx g\",\n" +
+                      "    \"Fat\": \"xxx g\",\n" +
+                      "    \"Time to make\": \"xxx min\",\n" +
+                      "    \"Description\": \"This xxx is xxx.\",\n" +
+                      "    \"Instructions\": \"1. xxx 2. xxx 3. xxx. 4. xxx. 5. xxx. 6. Serve.\"\n" +
+                      "  }\n" +
+                      "  // Add more meals in similar structure if needed\n" +
+                      "}"
               +
 
               "Each ingredient's quantity should be listed in metric units or amount." +
