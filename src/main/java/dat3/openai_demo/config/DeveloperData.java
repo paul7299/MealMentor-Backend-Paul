@@ -69,7 +69,7 @@ public class DeveloperData implements ApplicationRunner {
 
     }
 
-
+// comment to restart
     private void setupTestMeals() {
 
         Meal meal1 = new Meal("breakfast", "tomato breakfast", "bake it", 100, 50, 200, 10);
