@@ -42,6 +42,7 @@ public class AuthenticationController {
   }
 
   @PostMapping("login")
+  @CrossOrigin
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
 
     try {
