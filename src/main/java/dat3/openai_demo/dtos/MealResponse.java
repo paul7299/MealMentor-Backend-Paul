@@ -9,23 +9,27 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class MealResponse {
-    int mealId;
-    String mealType;
-    String title;
-    String instructions;
-    int calories;
-    int protein;
-    int carbs;
-    int fat;
+    private int mealId;
+    private String mealType;
+    private String title;
+    private String instructions;
+    private String description;
+    private int calories;
+    private int protein;
+    private int carbs;
+    private int fat;
+    private String timeToMake;
 
-    public MealResponse(Meal meal){
-        this.mealId = meal.getId();
-        this.mealType = meal.getMealType();
-        this.title = meal.getTitle();
-        this.instructions = meal.getInstructions();
-        this.calories = meal.getCalories();
-        this.protein = meal.getProtein();
-        this.carbs = meal.getCarbs();
-        this.fat = meal.getFat();
-    }
+  public MealResponse(Meal meal){
+    this.mealId = meal.getId();
+    this.mealType = meal.getMealType();
+    this.title = meal.getTitle();
+    this.instructions = meal.getInstructions();
+    this.description = meal.getDescription();
+    this.calories = meal.getCalories();
+    this.protein = meal.getProtein();
+    this.carbs = meal.getCarbs();
+    this.fat = meal.getFat();
+    this.timeToMake = meal.getTimeToMake();
+  }
 }

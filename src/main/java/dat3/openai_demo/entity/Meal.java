@@ -54,6 +54,17 @@ public class Meal {
         this.protein = protein;
     }
 
+    public Meal(String mealType, String title, String instructions, int calories, int carbs, int fat, int protein, String timeToMake) {
+        this.mealType = mealType;
+        this.title = title;
+        this.instructions = instructions;
+        this.calories = calories;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.protein = protein;
+        this.timeToMake = timeToMake;
+    }
+
     public void addIngredient(Ingredient i) {
         if(this.ingredients == null){
             this.ingredients = new ArrayList<>();

@@ -47,4 +47,9 @@ public class MealController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving meal to user.");
         }
     }
+
+    @GetMapping("/usersSavedMeals/{username}")
+    public List<MealResponse> getUsersSavedMeals(@PathVariable String username){
+        return mealService.getUsersSavedMeals(username);
+    }
 }
