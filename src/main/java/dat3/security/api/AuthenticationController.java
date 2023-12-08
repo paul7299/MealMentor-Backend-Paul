@@ -40,7 +40,7 @@ public class AuthenticationController {
     this.authenticationManager = authenticationManager;
     this.encoder = encoder;
   }
-
+  @CrossOrigin
   @PostMapping("login")
   @CrossOrigin
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {

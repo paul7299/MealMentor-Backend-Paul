@@ -79,4 +79,9 @@ public class MealService {
         return meals.stream().map(MealResponse::new).collect(Collectors.toList());
     }
 
+    public List<MealResponse> getUsersSavedMeals(String username) {
+        User user = userRepository.findByUsername(username);
+        List<Meal> meals = user.getSavedMeals();
+        return meals.stream().map(MealResponse::new).collect(Collectors.toList());
+    }
 }
